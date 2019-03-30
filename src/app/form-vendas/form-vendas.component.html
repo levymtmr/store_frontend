@@ -1,3 +1,119 @@
-<p>
-  form-vendas works!
-</p>
+<div class="row"></div>
+
+<accordion>
+  <accordion-group heading="Fazer Vendas" class="format-form-vendas">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="container">
+          <br />
+          <select class="form-control">
+            <option>Nome do cliente</option>
+          </select>
+          <br />
+          <div>
+            <select class="form-control">
+              <option>Nome do Produto</option>
+              <option *ngFor="let product of products">{{
+                product.name
+              }}</option>
+            </select>
+            <br />
+            <label for="exampleFormControlFile1">Quantidade</label>
+            <br />
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Default input"
+            />
+            <br />
+            <label for="exampleFormControlFile1">Valor</label>
+            <br />
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Default input"
+            />
+            <br />
+            <button type="submit" class="btn btn-primary mb-2">
+              Adicionar Produto
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label for="">Lista do Pedido</label>
+        <table
+          class="table table-sm table-bordered table-striped tabela-detalhes"
+        >
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+        <button>Fechar Pedido</button>
+      </div>
+    </div>
+  </accordion-group>
+  <accordion-group heading="Produtos vendidos" class="format-form-vendas">
+    <div class="col-sm-8">
+      <div class="container">
+        <table
+          class="table table-sm table-bordered table-striped tabela-detalhes"
+        >
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </accordion-group>
+</accordion>

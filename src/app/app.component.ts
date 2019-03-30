@@ -8,11 +8,4 @@ import { ProductService } from './services/products';
 })
 export class AppComponent {
   title = 'store';
-  products: any;
-  
-  constructor(productService: ProductService){
-    productService.getProducts().subscribe(products => this.products = products);
-    console.log("sdasdas",this.products);
-  }
-
 }

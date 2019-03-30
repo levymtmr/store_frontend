@@ -6,24 +6,33 @@ import { AccordionModule } from "ngx-bootstrap/accordion";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
-import { SidebarComponent } from "./sidebar/sidebar.component";
 import { SidebarModule } from "ng-sidebar";
 import { AngularFontAwesomeModule } from "angular-font-awesome";
 import { FormVendasComponent } from "./form-vendas/form-vendas.component";
 import { ContasComponent } from "./contas/contas.component";
+import { NavbarComponent } from "./navbar/navbar.component";
+import { NotFoundComponent } from "./errors/not-found/not-found.component";
+import { ErrorsModule } from "./errors/errors.module";
+import { PrincipalComponent } from './principal/principal.component';
+import { EstoqueComponent } from './estoque/estoque.component';
+import { ProdutosComponent } from './produtos/produtos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
     FormVendasComponent,
-    ContasComponent
+    ContasComponent,
+    NavbarComponent,
+    PrincipalComponent,
+    EstoqueComponent,
+    ProdutosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     AppRoutingModule,
+    // ErrorsModule,
     TooltipModule.forRoot(),
     AccordionModule.forRoot(),
     SidebarModule.forRoot(),
