@@ -13,10 +13,10 @@ import { ContasComponent } from "./contas/contas.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { NotFoundComponent } from "./errors/not-found/not-found.component";
 import { ErrorsModule } from "./errors/errors.module";
-import { PrincipalComponent } from './principal/principal.component';
-import { EstoqueComponent } from './estoque/estoque.component';
-import { ProdutosComponent } from './produtos/produtos.component';
-
+import { PrincipalComponent } from "./principal/principal.component";
+import { EstoqueComponent } from "./estoque/estoque.component";
+import { ProdutosComponent } from "./produtos/produtos.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +36,8 @@ import { ProdutosComponent } from './produtos/produtos.component';
     TooltipModule.forRoot(),
     AccordionModule.forRoot(),
     SidebarModule.forRoot(),
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

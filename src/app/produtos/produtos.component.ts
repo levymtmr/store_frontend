@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ProductService } from "../services/products";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-produtos",
@@ -9,25 +10,35 @@ import { ProductService } from "../services/products";
 export class ProdutosComponent implements OnInit {
   products: any;
   quantidades: any;
+  cadastrarProduto: FormGroup;
 
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
     this.getProduct();
     this.getStorages();
+    this.createForm();
   }
 
   getProduct() {
     this.productService.getProducts().subscribe(products => {
       this.products = products;
-      console.log("products", this.products);
     });
   }
 
   getStorages() {
     this.productService.getStorages().subscribe(quantidades => {
       this.quantidades = quantidades;
-      console.log("quantidades", this.quantidades);
+    });
+  }
+
+  createForm() {
+    this.cadastrarProduto = new FormGroup({
+      nome: new FormControl("", Validators.required)
+      // dtNascimento: new FormControl("", Validators.required),
+      // cpf: new FormControl("", Validators.required),
+      // celular: new FormControl("", Validators.required),
+      // email: new FormControl("", Validators.required)
     });
   }
 }
