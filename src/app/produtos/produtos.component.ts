@@ -9,8 +9,12 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 })
 export class ProdutosComponent implements OnInit {
   products: any;
-  quantidades: any;
-  cadastrarProduto: FormGroup;
+  storage: any;
+  produtoForm: FormGroup;
+  dados: any;
+  nome:any;
+  data:any;
+  valor:any;
 
   constructor(private productService: ProductService) {}
 
@@ -27,18 +31,43 @@ export class ProdutosComponent implements OnInit {
   }
 
   getStorages() {
-    this.productService.getStorages().subscribe(quantidades => {
-      this.quantidades = quantidades;
+    this.productService.getStorages().subscribe(storage => {
+      this.storage = storage;
+      console.log("pegando quatidades", this.storage)
     });
   }
 
+  setAmountInProducts() {
+
+  }
+
   createForm() {
-    this.cadastrarProduto = new FormGroup({
-      nome: new FormControl("", Validators.required)
-      // dtNascimento: new FormControl("", Validators.required),
-      // cpf: new FormControl("", Validators.required),
-      // celular: new FormControl("", Validators.required),
-      // email: new FormControl("", Validators.required)
+    this.produtoForm = new FormGroup({
+      nome: new FormControl("", Validators.required),
+      data: new FormControl("", Validators.required),
+      valor: new FormControl("", Validators.required),
+      quantidade: new FormControl("", Validators.required)
     });
+  }
+
+  // getDados() {
+  //   this.nome = this.produtoForm.get('nome').value
+  //   this.data = this.produtoForm.get('data').value
+  //   this.valor = this.produtoForm.get('valor').value
+  //   console.log("chamando getdados() ", )
+  // }
+
+  adicionarProduto() {
+    // this.getDados();
+    this.dados = {
+      'name':this.produtoForm.get('nome').value,
+      'date':this.produtoForm.get('data').value,
+      'price':this.produtoForm.get('valor').value,
+      'amount': this.produtoForm.get('quantidade').value
+    }
+    console.log('dados', this.dados)
+    this.productService.postProduct(this.dados).subscribe(res => {
+      console.log("cadastrando produto", res)
+    })
   }
 }
