@@ -37,10 +37,6 @@ export class ProdutosComponent implements OnInit {
     });
   }
 
-  setAmountInProducts() {
-
-  }
-
   createForm() {
     this.produtoForm = new FormGroup({
       nome: new FormControl("", Validators.required),
@@ -50,15 +46,7 @@ export class ProdutosComponent implements OnInit {
     });
   }
 
-  // getDados() {
-  //   this.nome = this.produtoForm.get('nome').value
-  //   this.data = this.produtoForm.get('data').value
-  //   this.valor = this.produtoForm.get('valor').value
-  //   console.log("chamando getdados() ", )
-  // }
-
   adicionarProduto() {
-    // this.getDados();
     this.dados = {
       'name':this.produtoForm.get('nome').value,
       'date':this.produtoForm.get('data').value,
