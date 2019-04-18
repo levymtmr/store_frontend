@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-sm-4">
-    <div class="md-form mt-0 input-detalhes">
+  <div class="col-sm-4 tabela-detalhes">
+    <div class="md-form mt-0 ">
       <input
         class="form-control"
         type="text"
@@ -8,7 +8,7 @@
         aria-label="Search"
       />
     </div>
-    <table class="table table-sm table-bordered table-striped tabela-detalhes">
+    <table class="table table-sm table-bordered table-striped  ">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -27,29 +27,29 @@
       </tbody>
     </table>
   </div>
-  <div class="container">
-    <div class="col-sm-4">
-      <form [formGroup]="produtoForm">
-        <div class="form-group">
-          <label for="nome">Nome Produto</label>
-          <input class="form-control" formControlName="nome" type="text" />
-  
-          <label for="dt-nascimento">Data</label>
-          <input class="form-control" formControlName="data" type="date" />
-  
-          <label for="cpf">Valor</label>
-          <input class="form-control" formControlName="valor" type="text" />
-  
-          <label for="celular">Quantidade</label>
-          <input class="form-control" formControlName="quantidade" type="text" />
-  
-          <!-- <label for="email">Email</label>
+
+  <div class="col-sm-4 formulario_produto">
+    <form [formGroup]="produtoForm">
+      <div class="form-group">
+        <label for="nome">Nome Produto</label>
+        <input class="form-control" formControlName="nome" type="text" />
+
+        <label for="dt-nascimento">Data</label>
+        <input class="form-control" formControlName="data" type="date" />
+
+        <label for="cpf">Valor</label>
+        <input class="form-control" formControlName="valor" type="text" />
+
+        <label for="celular">Quantidade</label>
+        <input class="form-control" formControlName="quantidade" type="text" />
+
+        <!-- <label for="email">Email</label>
           <input class="form-control" type="text" /> -->
-          <br>
-          <button class="btn btn-primary mb-2" (click)="adicionarProduto()">Adicionar</button>
-        </div>
-      </form>
-    </div>
+        <br />
+        <button class="btn btn-primary mb-2" (click)="adicionarProduto()">
+          Adicionar
+        </button>
+      </div>
+    </form>
   </div>
-  
 </div>

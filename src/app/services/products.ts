@@ -3,9 +3,8 @@ import { Injectable } from "@angular/core";
 
 @Injectable({ providedIn: "root" })
 export class ProductService {
-  baseUrl = 'http://localhost:8000/'
-  constructor(private httpClient: HttpClient) {
-  }
+  baseUrl = "http://localhost:7000/";
+  constructor(private httpClient: HttpClient) {}
 
   getProducts() {
     return this.httpClient.get(this.baseUrl + "api/products/");
@@ -16,6 +15,6 @@ export class ProductService {
   }
 
   postProduct(data) {
-    return this.httpClient.post(this.baseUrl + "api/products/", data)
+    return this.httpClient.post(this.baseUrl + "api/products/", data);
   }
 }
