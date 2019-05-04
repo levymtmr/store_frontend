@@ -17,6 +17,8 @@ import { PrincipalComponent } from "./principal/principal.component";
 import { EstoqueComponent } from "./estoque/estoque.component";
 import { ProdutosComponent } from "./produtos/produtos.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     AccordionModule.forRoot(),
     SidebarModule.forRoot(),
     AngularFontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

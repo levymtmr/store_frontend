@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, TemplateRef } from "@angular/core";
 import { ProductService } from "../services/products";
 import { SellService } from "../services/sell.service";
+import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: "app-form-vendas",
@@ -11,10 +12,13 @@ export class FormVendasComponent implements OnInit {
   products: any;
   sellProducts: any;
   clients: any;
+  modalRef: BsModalRef;
+  
 
   constructor(
     private product: ProductService,
-    private sellProduct: SellService
+    private sellProduct: SellService,
+    private modalService: BsModalService
   ) {}
 
   ngOnInit() {
@@ -40,5 +44,10 @@ export class FormVendasComponent implements OnInit {
     this.sellProduct.getClients().subscribe(clients => {
       this.clients = clients;
     });
+  }
+
+  openModal(template: TemplateRef<any>) {
+    
+    this.modalRef = this.modalService.show(template,{class: 'modal-lg'});
   }
 }
