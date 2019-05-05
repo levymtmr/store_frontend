@@ -16,19 +16,19 @@
           <th scope="col">Nome Produto</th>
           <th scope="col">Cliente</th>
           <th scope="col">Unidade</th>
-          <th scope="col">Valor</th>
           <th scope="col">Quantidade</th>
+          <th scope="col">Valor</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let product of sellProducts; let i = index">
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ product.date }}</td>
-          <td>{{ product.products }}</td>
+          <td>{{ product.products_storage }}</td>
           <td>{{ product.client }}</td>
           <td>{{ product.unit }}</td>
-          <td>{{ product.price }}</td>
           <td>{{ product.amount }}</td>
+          <td>{{ product.price }}</td>
         </tr>
       </tbody>
     </table>
@@ -55,106 +55,86 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+
   <div class="modal-body">
-    <select class="form-control">
-      <option>Nome do cliente</option>
-      <option *ngFor="let cliente of clients">{{ cliente.name }}</option>
-    </select>
-    <br />
-    <div>
-      <select class="form-control">
-        <option>Nome do Produto</option>
-        <option *ngFor="let product of products">{{ product.name }}</option>
-      </select>
-      <br />
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <input type="text" class="form-control" placeholder="Unidade" />
-      </div>
-      <div class="col-sm-4">
-        <input class="form-control" type="text" placeholder="Quantidade" />
-      </div>
-      <div class="col-sm-4">
-        <input class="form-control" type="text" placeholder="Valor" />
-      </div>
-    </div>
-    <br />
-    <button type="submit" class="btn btn-primary mb-2 botao-adicionar">
-      Adicionar Produto
-    </button>
-
-    <div class="container ">
-      <div>
-        
-        <table class="table table-sm table-bordered table-striped  ">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Data</th>
-              <th scope="col">Nome Produto</th>
-              <th scope="col">Cliente</th>
-              <th scope="col">Unidade</th>
-              <th scope="col">Valor</th>
-              <th scope="col">Quantidade</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let product of sellProducts; let i = index">
-              <th scope="row">{{ i + 1 }}</th>
-              <td>{{ product.date }}</td>
-              <td>{{ product.products }}</td>
-              <td>{{ product.client }}</td>
-              <td>{{ product.unit }}</td>
-              <td>{{ product.price }}</td>
-              <td>{{ product.amount }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <button type="submit" class="btn btn-primary mb-2 botao-adicionar">
-          Adicionar Produto
-        </button>
-    </div>
-  </div>
-</ng-template>
-
-<!-- <div class="row format-form-vendas"> 
-    <div class="col-sm-6">
-      <br />
-      <select class="form-control">
+    <form [formGroup]="carrinhoForm">
+      <select class="form-control" formControlName="nome_cliente">
         <option>Nome do cliente</option>
         <option *ngFor="let cliente of clients">{{ cliente.name }}</option>
       </select>
       <br />
       <div>
-        <select class="form-control">
+        <select class="form-control" formControlName="nome_produto">
           <option>Nome do Produto</option>
           <option *ngFor="let product of products">{{ product.name }}</option>
         </select>
         <br />
       </div>
-    </div>
-    <div class="col-sm-2">
+      <div class="row">
+        <div class="col-sm-4">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Quantidade"
+            formControlName="quantidade"
+          />
+        </div>
+        <div class="col-sm-4">
+          <select class="form-control" formControlName="unidade">
+            <option>Unidade</option>
+            <option>KG</option>
+            <option>SC</option>
+            <option>UND</option>
+          </select>
+        </div>
+        <div class="col-sm-4">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Valor"
+            formControlName="valor"
+          />
+        </div>
+      </div>
       <br />
-     
-      <input type="text" class="form-control" placeholder="Unidade" />
-      <br />
+    </form>
+
+    <button
+      type="submit"
+      class="btn btn-primary mb-2 botao-adicionar"
+      (click)="adicionarProdutoCarrinho()"
+    >
+      Adicionar Produto no Carrinho
+    </button>
+
+    <div class="container ">
+      <div>
+        <table class="table table-sm table-bordered table-striped  ">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Nome Produto</th>
+              <th scope="col">Unidade</th>
+              <th scope="col">Quantidade</th>
+              <th scope="col">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let items of itemsCarrinho; let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ items.nome_cliente }}</td>
+              <td>{{ items.nome_produto }}</td>
+              <td>{{ items.unidade }}</td>
+              <td>{{ items.quantidade }}</td>
+              <td>{{ items.valor }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <button type="submit" class="btn btn-primary mb-2 botao-adicionar">
-        Adicionar Produto
+        Fechar Pedido
       </button>
     </div>
-    <div class="col-sm-2">
-      <br />
-     
-      <input class="form-control" type="text" placeholder="Quantidade" />
-      <br />
-    </div>
-    <div class="col-sm-2">
-      <br />
-      
-      <input class="form-control" type="text" placeholder="Valor" />
-      <br />
-    </div>
-    <div class="col-sm-2"></div>
-  </div>   -->
+  </div>
+</ng-template>
