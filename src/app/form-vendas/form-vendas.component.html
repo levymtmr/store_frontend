@@ -58,13 +58,13 @@
 
   <div class="modal-body">
     <form [formGroup]="carrinhoForm">
-      <select class="form-control" formControlName="nome_cliente">
+      <select class="form-control" formControlName="client">
         <option>Nome do cliente</option>
         <option *ngFor="let cliente of clients">{{ cliente.name }}</option>
       </select>
       <br />
       <div>
-        <select class="form-control" formControlName="nome_produto">
+        <select class="form-control" formControlName="products_storage">
           <option>Nome do Produto</option>
           <option *ngFor="let product of products">{{ product.name }}</option>
         </select>
@@ -76,13 +76,13 @@
             class="form-control"
             type="text"
             placeholder="Quantidade"
-            formControlName="quantidade"
+            formControlName="amount"
           />
         </div>
         <div class="col-sm-4">
           <select
             class="form-control"
-            formControlName="unidade"
+            formControlName="unit"
             selected="selected"
           >
             <option value="1" selected="selected">Unidade</option>
@@ -96,7 +96,7 @@
             class="form-control"
             type="text"
             placeholder="Valor"
-            formControlName="valor"
+            formControlName="price"
           />
         </div>
       </div>
@@ -127,16 +127,20 @@
           <tbody>
             <tr *ngFor="let items of itemsCarrinho; let i = index">
               <th scope="row">{{ i + 1 }}</th>
-              <td>{{ items.nome_cliente }}</td>
-              <td>{{ items.nome_produto }}</td>
-              <td>{{ items.unidade }}</td>
-              <td>{{ items.quantidade }}</td>
-              <td>{{ items.valor }}</td>
+              <td>{{ items.client }}</td>
+              <td>{{ items.products_storage }}</td>
+              <td>{{ items.unit }}</td>
+              <td>{{ items.amount }}</td>
+              <td>{{ items.price }}</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <button type="submit" class="btn btn-primary mb-2 botao-adicionar">
+      <button
+        type="submit"
+        class="btn btn-primary mb-2 botao-adicionar"
+        (click)="fecharPedido()"
+      >
         Fechar Pedido
       </button>
     </div>

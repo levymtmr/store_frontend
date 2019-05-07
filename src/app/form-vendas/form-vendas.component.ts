@@ -1,6 +1,6 @@
+import { SellService } from "./../services/sell.service";
 import { Component, OnInit, TemplateRef } from "@angular/core";
 import { ProductService } from "../services/products";
-import { SellService } from "../services/sell.service";
 import { BsModalService, BsModalRef, ModalOptions } from "ngx-bootstrap/modal";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
@@ -55,23 +55,34 @@ export class FormVendasComponent implements OnInit {
 
   createFormCarrinho() {
     this.carrinhoForm = new FormGroup({
-      nome_cliente: new FormControl(null, Validators.required),
-      nome_produto: new FormControl(null, Validators.required),
-      unidade: new FormControl(null, Validators.required),
-      quantidade: new FormControl(null, Validators.required),
-      valor: new FormControl(null, Validators.required)
+      client: new FormControl(null, Validators.required),
+      products_storage: new FormControl(null, Validators.required),
+      unit: new FormControl(null, Validators.required),
+      amount: new FormControl(null, Validators.required),
+      price: new FormControl(null, Validators.required)
     });
   }
 
   adicionarProdutoCarrinho() {
     this.dados = {
-      nome_cliente: this.carrinhoForm.get("nome_cliente").value,
-      nome_produto: this.carrinhoForm.get("nome_produto").value,
-      unidade: this.carrinhoForm.get("unidade").value,
-      quantidade: this.carrinhoForm.get("quantidade").value,
-      valor: this.carrinhoForm.get("valor").value
+      client: this.carrinhoForm.get("client").value,
+      products_storage: this.carrinhoForm.get("products_storage").value,
+      unit: this.carrinhoForm.get("unit").value,
+      amount: this.carrinhoForm.get("amount").value,
+      price: this.carrinhoForm.get("price").value
     };
     this.itemsCarrinho.push(this.dados);
     console.log("dados", this.dados);
+  }
+
+  salvarVendas(elemento) {}
+
+  fecharPedido() {
+    this.itemsCarrinho.forEach(element => {
+      this.sellProduct.postProductSells(element).subscribe(res => {
+        console.log("respose", res);
+      });
+      console.log("objetos ", element);
+    });
   }
 }
