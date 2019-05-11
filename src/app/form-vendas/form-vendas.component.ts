@@ -1,8 +1,10 @@
+import { Cliente } from "./../models/cliente.model";
 import { SellService } from "./../services/sell.service";
 import { Component, OnInit, TemplateRef } from "@angular/core";
 import { ProductService } from "../services/products";
 import { BsModalService, BsModalRef, ModalOptions } from "ngx-bootstrap/modal";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Produto } from "../models/produto.model";
 
 @Component({
   selector: "app-form-vendas",
@@ -10,9 +12,9 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
   styleUrls: ["./form-vendas.component.scss"]
 })
 export class FormVendasComponent implements OnInit {
-  products: any;
+  products: Produto;
   sellProducts: any;
-  clients: any;
+  clients: Cliente;
   modalRef: BsModalRef;
   carrinhoForm: FormGroup;
   dados: any;
@@ -75,12 +77,18 @@ export class FormVendasComponent implements OnInit {
     console.log("dados", this.dados);
   }
 
-  salvarVendas(elemento) {}
+  dadosIsEmpty() {
+    if (this.dados != null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   fecharPedido() {
     this.itemsCarrinho.forEach(element => {
       this.sellProduct.postProductSells(element).subscribe(res => {
-        console.log("respose", res);
+        console.log("response", res);
       });
       console.log("objetos ", element);
     });

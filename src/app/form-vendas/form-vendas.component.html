@@ -1,38 +1,43 @@
 <div class="container ">
-  <div>
-    <div class="md-form mt-0 tabela-detalhes">
-      <input
-        class="form-control"
-        type="text"
-        placeholder="Search"
-        aria-label="Search"
-      />
-    </div>
-    <table class="table table-sm table-bordered table-striped  tabela-detalhes">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Data</th>
-          <th scope="col">Nome Produto</th>
-          <th scope="col">Cliente</th>
-          <th scope="col">Unidade</th>
-          <th scope="col">Quantidade</th>
-          <th scope="col">Valor</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let product of sellProducts; let i = index">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>{{ product.date }}</td>
-          <td>{{ product.products_storage }}</td>
-          <td>{{ product.client }}</td>
-          <td>{{ product.unit }}</td>
-          <td>{{ product.amount }}</td>
-          <td>{{ product.price }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="md-form mt-0 tabela-detalhes">
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Search"
+      aria-label="Search"
+    />
   </div>
+  <div style="overflow-y: auto; width: 1125px; height:300px;">
+    <div>
+      <table
+        class="table table-sm table-bordered table-striped  tabela-detalhes"
+      >
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Data</th>
+            <th scope="col">Nome Produto</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Unidade</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of sellProducts; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ product.date }}</td>
+            <td>{{ product.products_storage }}</td>
+            <td>{{ product.client }}</td>
+            <td>{{ product.unit }}</td>
+            <td>{{ product.amount }}</td>
+            <td>{{ product.price }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <div>
     <button
       class="btn btn-primary btn-lg btn-block botao-fazer-vendas"
@@ -60,13 +65,17 @@
     <form [formGroup]="carrinhoForm">
       <select class="form-control" formControlName="client">
         <option>Nome do cliente</option>
-        <option *ngFor="let cliente of clients">{{ cliente.name }}</option>
+        <option *ngFor="let cliente of clients" value="{{ cliente.id }}">{{
+          cliente.name
+        }}</option>
       </select>
       <br />
       <div>
         <select class="form-control" formControlName="products_storage">
           <option>Nome do Produto</option>
-          <option *ngFor="let product of products">{{ product.name }}</option>
+          <option *ngFor="let product of products" value="{{ product.id }}">{{
+            product.name
+          }}</option>
         </select>
         <br />
       </div>
@@ -111,7 +120,7 @@
       Adicionar Produto no Carrinho
     </button>
 
-    <div class="container ">
+    <div *ngIf="!dadosIsEmpty()" class="container ">
       <div>
         <table class="table table-sm table-bordered table-striped  ">
           <thead>
@@ -127,7 +136,7 @@
           <tbody>
             <tr *ngFor="let items of itemsCarrinho; let i = index">
               <th scope="row">{{ i + 1 }}</th>
-              <td>{{ items.client }}</td>
+              <td>{{ items.name }}</td>
               <td>{{ items.products_storage }}</td>
               <td>{{ items.unit }}</td>
               <td>{{ items.amount }}</td>
