@@ -14,10 +14,6 @@ export class SellService {
     return this.httpClient.get(this.baseUrl + "api/sells/");
   }
 
-  getClients() {
-    return this.httpClient.get(this.baseUrl + "api/clients");
-  }
-
   postProductSells(data) {
     return this.httpClient
       .post(this.baseUrl + "api/sells/", data)

@@ -10,6 +10,10 @@ export class ProductService {
     return this.httpClient.get(this.baseUrl + "api/products/");
   }
 
+  getProduct(id) {
+    return this.httpClient.get(this.baseUrl + "api/products/" + id);
+  }
+
   getStorages() {
     return this.httpClient.get(this.baseUrl + "api/storages/");
   }

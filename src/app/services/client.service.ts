@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpEvent } from "@angular/common/http";
+import { tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -9,7 +10,15 @@ export class ClientService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getClient() {
-    return this.httpClient.get(this.baseUrl + "/api/client/");
+  getClients() {
+    return this.httpClient.get(this.baseUrl + "api/clients/");
+  }
+
+  getCliente(id) {
+    return this.httpClient.get(this.baseUrl + "api/clients/" + id).pipe(
+      tap(data => {
+        return data;
+      })
+    );
   }
 }

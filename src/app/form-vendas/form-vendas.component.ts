@@ -1,3 +1,4 @@
+import { ClientService } from "./../services/client.service";
 import { Cliente } from "./../models/cliente.model";
 import { SellService } from "./../services/sell.service";
 import { Component, OnInit, TemplateRef } from "@angular/core";
@@ -12,18 +13,20 @@ import { Produto } from "../models/produto.model";
   styleUrls: ["./form-vendas.component.scss"]
 })
 export class FormVendasComponent implements OnInit {
-  products: Produto;
+  products: Array<Produto>;
   sellProducts: any;
-  clients: Cliente;
+  clients: Array<Cliente>;
   modalRef: BsModalRef;
   carrinhoForm: FormGroup;
   dados: any;
   itemsCarrinho: Array<any> = [];
+  nameCLiente: String;
 
   constructor(
     private product: ProductService,
     private sellProduct: SellService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private clienteService: ClientService
   ) {}
 
   ngOnInit() {
@@ -45,7 +48,7 @@ export class FormVendasComponent implements OnInit {
   }
 
   getClientesForSell() {
-    this.sellProduct.getClients().subscribe(clients => {
+    this.clienteService.getClients().subscribe(clients => {
       this.clients = clients;
     });
   }
@@ -65,16 +68,31 @@ export class FormVendasComponent implements OnInit {
     });
   }
 
+  getCliente(id) {
+    return this.clients.filter(cliente => {
+      return cliente.id == id;
+    });
+  }
+
+  getProduct(id) {
+    return this.products.filter(product => {
+      return product.id == id;
+    });
+  }
+
   adicionarProdutoCarrinho() {
+    const clienteId = this.carrinhoForm.get("client").value;
+    const productId = this.carrinhoForm.get("products_storage").value;
     this.dados = {
-      client: this.carrinhoForm.get("client").value,
+      client_display: this.getCliente(clienteId)[0].name,
+      product_display: this.getProduct(productId)[0].name,
+      client: clienteId,
       products_storage: this.carrinhoForm.get("products_storage").value,
       unit: this.carrinhoForm.get("unit").value,
       amount: this.carrinhoForm.get("amount").value,
       price: this.carrinhoForm.get("price").value
     };
     this.itemsCarrinho.push(this.dados);
-    console.log("dados", this.dados);
   }
 
   dadosIsEmpty() {
@@ -87,10 +105,18 @@ export class FormVendasComponent implements OnInit {
 
   fecharPedido() {
     this.itemsCarrinho.forEach(element => {
-      this.sellProduct.postProductSells(element).subscribe(res => {
-        console.log("response", res);
-      });
-      console.log("objetos ", element);
+      this.sellProduct.postProductSells(element).subscribe(
+        res => {
+          console.log("response", res);
+          this.itemsCarrinho.forEach(element => {
+            this.itemsCarrinho.pop();
+          });
+        },
+        error => {
+          console.log("objetos ", error);
+        }
+      );
     });
+    this.modalRef.hide();
   }
 }

@@ -15,3 +15,11 @@
 .formulario_produto {
   margin-left: 2%;
 }
+
+.btnAdd {
+  border-radius: 100%;
+}
+
+.tr[ng-click] {
+  cursor: pointer;
+}
