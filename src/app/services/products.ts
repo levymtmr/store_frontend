@@ -18,6 +18,10 @@ export class ProductService {
     return this.httpClient.get(this.baseUrl + "api/storages/");
   }
 
+  searchProduct(word) {
+    return this.httpClient.get(this.baseUrl + "api/products/?search=" + word);
+  }
+
   postProduct(data) {
     return this.httpClient.post(this.baseUrl + "api/products/", data);
   }

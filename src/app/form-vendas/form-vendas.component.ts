@@ -32,7 +32,7 @@ export class FormVendasComponent implements OnInit {
   ngOnInit() {
     this.get_name_products();
     this.getProdutosVendidos();
-    this.getClientesForSell();
+    // this.getClientesForSell();
   }
 
   get_name_products() {

@@ -67,6 +67,12 @@ export class ProdutosComponent implements OnInit {
     });
   }
 
+  pesquisaProdutos(word) {
+    this.productService.searchProduct(word).subscribe(res => {
+      console.log("resposta", res);
+    });
+  }
+
   createFormAtualizarProduto() {
     this.formAtualizarEstoque = new FormGroup({
       atualizarNome: new FormControl("", Validators.required),
