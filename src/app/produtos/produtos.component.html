@@ -6,8 +6,6 @@
         type="text"
         placeholder="Search"
         aria-label="Search"
-        ,
-        id="inputPesquisa"
       />
     </div>
     <table
@@ -25,7 +23,13 @@
       <tbody>
         <tr *ngFor="let product of storage; let i = index">
           <th scope="row">{{ product.id }}</th>
-          <td (click)="atualizarProduto(product.id)">{{ product.product }}</td>
+          <td
+            (click)="
+              atualizarFormProduto(product.id, atualizarOuAdicionarProduto)
+            "
+          >
+            {{ product.product }}
+          </td>
           <td>{{ product.price }}</td>
           <td>{{ product.amount }}</td>
         </tr>
@@ -58,36 +62,44 @@
     </form>
   </div>
 </div>
-<div class="container">
-  <form [formGroup]="formAtualizarEstoque">
-    <div class="form-group">
-      <label for="nome">Nome Produto</label>
-      <input class="form-control" formControlName="atualizarNome" type="text" />
 
-      <label for="dt-nascimento">Data</label>
-      <input class="form-control" formControlName="atualizarData" type="date" />
+<ng-template #atualizarOuAdicionarProduto>
+  <div class="container">
+    <form [formGroup]="formAtualizarEstoque">
+      <div class="form-group">
+        <label for="nome">Nome Produto</label>
+        <input
+          class="form-control"
+          formControlName="atualizarNome"
+          type="text"
+        />
 
-      <label for="cpf">Valor</label>
-      <input
-        class="form-control"
-        formControlName="atualizarValor"
-        type="text"
-      />
+        <label for="dt-nascimento">Data</label>
+        <input
+          class="form-control"
+          formControlName="atualizarData"
+          type="date"
+        />
 
-      <label for="celular">Quantidade</label>
-      <input
-        class="form-control"
-        formControlName="atualizarQuantidade"
-        type="text"
-      />
+        <label for="cpf">Valor</label>
+        <input
+          class="form-control"
+          formControlName="atualizarValor"
+          type="text"
+        />
 
-      <br />
-      <button
-        class="btn btn-primary mb-2"
-        (click)="createFormAtualizarProduto()"
-      >
-        Atualizar
-      </button>
-    </div>
-  </form>
-</div>
+        <label for="celular">Quantidade</label>
+        <input
+          class="form-control"
+          formControlName="atualizarQuantidade"
+          type="text"
+        />
+
+        <br />
+        <button class="btn btn-primary mb-2" (click)="salvarNovosDados()">
+          Atualizar
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>

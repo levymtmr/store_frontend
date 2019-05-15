@@ -11,7 +11,7 @@ export class ClientService {
   constructor(private httpClient: HttpClient) {}
 
   getClients() {
-    return this.httpClient.get(this.baseUrl + "api/clients/");
+    return this.httpClient.get<Array<any>>(this.baseUrl + "api/clients/");
   }
 
   getCliente(id) {

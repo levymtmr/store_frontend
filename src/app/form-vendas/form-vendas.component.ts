@@ -2,7 +2,7 @@ import { ClientService } from "./../services/client.service";
 import { Cliente } from "./../models/cliente.model";
 import { SellService } from "./../services/sell.service";
 import { Component, OnInit, TemplateRef } from "@angular/core";
-import { ProductService } from "../services/products";
+import { ProductService } from "../services/products.service";
 import { BsModalService, BsModalRef, ModalOptions } from "ngx-bootstrap/modal";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Produto } from "../models/produto.model";
@@ -32,7 +32,7 @@ export class FormVendasComponent implements OnInit {
   ngOnInit() {
     this.get_name_products();
     this.getProdutosVendidos();
-    // this.getClientesForSell();
+    this.getClientesForSell();
   }
 
   get_name_products() {
