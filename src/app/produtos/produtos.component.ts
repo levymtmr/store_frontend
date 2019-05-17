@@ -20,7 +20,8 @@ export class ProdutosComponent implements OnInit {
   data: any;
   valor: any;
   produtoSelecionado: number;
-  atualizarOuAdicionar: boolean = false;
+  formAdicionarProdutoDisplay: Boolean = false;
+  contador: number = 0;
 
   constructor(
     private productService: ProductService,
@@ -54,6 +55,14 @@ export class ProdutosComponent implements OnInit {
     });
   }
 
+  abrirFormAdicionarProduto() {
+    this.contador += 1;
+    if (this.contador % 2 == 0) this.formAdicionarProdutoDisplay = true;
+    else {
+      this.formAdicionarProdutoDisplay = false;
+    }
+  }
+
   createForm() {
     this.produtoForm = new FormGroup({
       nome: new FormControl("", Validators.required),
@@ -83,7 +92,6 @@ export class ProdutosComponent implements OnInit {
   }
 
   atualizarFormProduto(id, template: TemplateRef<any>) {
-    this.atualizarOuAdicionar = true;
     this.produtoSelecionado = id;
     this.modalRef = this.modalService.show(template, { class: "modal-lg" });
     console.log("chamando", this.getProduct(id));
