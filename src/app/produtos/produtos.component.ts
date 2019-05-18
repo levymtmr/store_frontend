@@ -1,6 +1,7 @@
+import { ProductService } from "./../services/products.service";
 import { StorageService } from "./../services/storage.service";
 import { Component, OnInit, TemplateRef } from "@angular/core";
-import { ProductService } from "../services/products.service";
+// import { ProductService } from "../services/products.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { BsModalService, BsModalRef, ModalOptions } from "ngx-bootstrap/modal";
 
@@ -43,8 +44,8 @@ export class ProdutosComponent implements OnInit {
   }
 
   getProduct(id) {
-    return this.storage.filter(storageProduct => {
-      return storageProduct.id == id;
+    return this.products.filter(products => {
+      return products.id == id;
     });
   }
 
@@ -68,7 +69,8 @@ export class ProdutosComponent implements OnInit {
       nome: new FormControl("", Validators.required),
       data: new FormControl("", Validators.required),
       valor: new FormControl("", Validators.required),
-      quantidade: new FormControl("", Validators.required)
+      quantidade: new FormControl("", Validators.required),
+      unidade: new FormControl("", Validators.required)
     });
   }
 
@@ -77,11 +79,13 @@ export class ProdutosComponent implements OnInit {
       name: this.produtoForm.get("nome").value,
       date: this.produtoForm.get("data").value,
       price: this.produtoForm.get("valor").value,
-      amount: this.produtoForm.get("quantidade").value
+      amount: this.produtoForm.get("quantidade").value,
+      unit: this.produtoForm.get("unidade").value
     };
     console.log("dados", this.dados);
     this.productService.postProduct(this.dados).subscribe(res => {
       console.log("cadastrando produto", res);
+      this.formAdicionarProdutoDisplay = false;
     });
   }
 
@@ -97,10 +101,10 @@ export class ProdutosComponent implements OnInit {
     console.log("chamando", this.getProduct(id));
     this.formAtualizarEstoque
       .get("atualizarNome")
-      .setValue(this.getProduct(id)[0].product);
+      .setValue(this.getProduct(id)[0].name);
     this.formAtualizarEstoque
       .get("atualizarData")
-      .setValue(this.getProduct(id)[0].date_storage);
+      .setValue(this.getProduct(id)[0].date);
     this.formAtualizarEstoque
       .get("atualizarValor")
       .setValue(this.getProduct(id)[0].price);
@@ -120,15 +124,16 @@ export class ProdutosComponent implements OnInit {
 
   salvarNovosDados() {
     var dados = {
-      product: this.formAtualizarEstoque.get("atualizarNome").value,
-      date_storage: this.formAtualizarEstoque.get("atualizarData").value,
+      name: this.formAtualizarEstoque.get("atualizarNome").value,
+      date: this.formAtualizarEstoque.get("atualizarData").value,
       price: this.formAtualizarEstoque.get("atualizarValor").value,
       amount: this.formAtualizarEstoque.get("atualizarQuantidade").value
     };
     console.log("form atualizar dados", dados);
-    this.storageService.patchProduct(this.produtoSelecionado, dados).subscribe(
+    this.productService.patchProduct(this.produtoSelecionado, dados).subscribe(
       res => {
         console.log("repostas", res);
+        this.modalRef.hide();
       },
       error => {
         console.log("error", error);

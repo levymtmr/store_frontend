@@ -21,4 +21,8 @@ export class ProductService {
   postProduct(data) {
     return this.httpClient.post(this.baseUrl + "api/products/", data);
   }
+
+  patchProduct(id, data) {
+    return this.httpClient.patch(this.baseUrl + `api/products/${id}/`, data);
+  }
 }

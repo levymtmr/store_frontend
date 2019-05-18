@@ -61,7 +61,7 @@ export class FormVendasComponent implements OnInit {
   createFormCarrinho() {
     this.carrinhoForm = new FormGroup({
       client: new FormControl(null, Validators.required),
-      products_storage: new FormControl(null, Validators.required),
+      products: new FormControl(null, Validators.required),
       unit: new FormControl(null, Validators.required),
       amount: new FormControl(null, Validators.required),
       price: new FormControl(null, Validators.required)
@@ -80,14 +80,19 @@ export class FormVendasComponent implements OnInit {
     });
   }
 
+  verificarExistente(dados) {
+    console.log("verificar dados", dados);
+  }
+
   adicionarProdutoCarrinho() {
     const clienteId = this.carrinhoForm.get("client").value;
-    const productId = this.carrinhoForm.get("products_storage").value;
+    const productId = this.carrinhoForm.get("products").value;
+    this.verificarExistente(this.itemsCarrinho);
     this.dados = {
       client_display: this.getCliente(clienteId)[0].name,
       product_display: this.getProduct(productId)[0].name,
       client: clienteId,
-      products_storage: this.carrinhoForm.get("products_storage").value,
+      products: this.carrinhoForm.get("products").value,
       unit: this.carrinhoForm.get("unit").value,
       amount: this.carrinhoForm.get("amount").value,
       price: this.carrinhoForm.get("price").value
@@ -105,9 +110,11 @@ export class FormVendasComponent implements OnInit {
 
   fecharPedido() {
     this.itemsCarrinho.forEach(element => {
+      console.log("chamando", element);
       this.sellProduct.postProductSells(element).subscribe(
         res => {
           console.log("response", res);
+          this.carrinhoForm.reset();
           this.itemsCarrinho.forEach(element => {
             this.itemsCarrinho.pop();
           });

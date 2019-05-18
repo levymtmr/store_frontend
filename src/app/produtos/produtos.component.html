@@ -21,14 +21,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of storage; let i = index">
+        <tr *ngFor="let product of products; let i = index">
           <th scope="row">{{ product.id }}</th>
           <td
             (click)="
               atualizarFormProduto(product.id, atualizarOuAdicionarProduto)
             "
           >
-            {{ product.product }}
+            {{ product.name }}
           </td>
           <td>{{ product.price }}</td>
           <td>{{ product.amount }}</td>
@@ -47,9 +47,9 @@
           Adicionar Produto
         </button>
       </div>
-      <div class="col-sm-6">
+      <!-- <div class="col-sm-6">
         <button class="btn btn-primary mb-2">Modificar Estoques</button>
-      </div>
+      </div> -->
     </div>
 
     <form *ngIf="formAdicionarProdutoDisplay" [formGroup]="produtoForm">
@@ -66,8 +66,13 @@
         <label for="celular">Quantidade</label>
         <input class="form-control" formControlName="quantidade" type="text" />
 
-        <!-- <label for="email">Email</label>
-          <input class="form-control" type="text" /> -->
+        <label for="unidade">Unidade</label>
+        <select class="form-control" formControlName="unidade" name="unidade">
+          <option>UND</option>
+          <option>SC</option>
+          <option>KG</option>
+        </select>
+
         <br />
         <button class="btn btn-primary mb-2" (click)="adicionarProduto()">
           Adicionar

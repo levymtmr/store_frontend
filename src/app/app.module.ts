@@ -18,6 +18,7 @@ import { EstoqueComponent } from "./estoque/estoque.component";
 import { ProdutosComponent } from "./produtos/produtos.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ModalModule } from "ngx-bootstrap/modal";
+import { ClientesComponent } from './clientes/clientes.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ModalModule } from "ngx-bootstrap/modal";
     NavbarComponent,
     PrincipalComponent,
     EstoqueComponent,
-    ProdutosComponent
+    ProdutosComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,
