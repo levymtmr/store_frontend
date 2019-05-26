@@ -1,3 +1,4 @@
+import { Produto } from "./../models/produto.model";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
@@ -7,7 +8,7 @@ export class ProductService {
   constructor(private httpClient: HttpClient) {}
 
   getProducts() {
-    return this.httpClient.get<Array<any>>(this.baseUrl + "api/products/");
+    return this.httpClient.get<Array<Produto>>(this.baseUrl + "api/products/");
   }
 
   getProduct(id) {

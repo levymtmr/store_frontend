@@ -15,7 +15,9 @@ const routes: Routes = [
   { path: "home", component: PrincipalComponent },
   { path: "estoque", component: EstoqueComponent },
   { path: "produtos", component: ProdutosComponent },
-  { path: "clientes", component: ClientesComponent }
+  { path: "clientes", component: ClientesComponent },
+  { path: "principal", component: PrincipalComponent },
+  { path: "contas", component: ContasComponent }
   // { path: "**", component: ErrorsModule }
 ];
 

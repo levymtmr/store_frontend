@@ -92,7 +92,7 @@ export class FormVendasComponent implements OnInit {
       client_display: this.getCliente(clienteId)[0].name,
       product_display: this.getProduct(productId)[0].name,
       client: clienteId,
-      products: this.carrinhoForm.get("products").value,
+      products_storage: this.carrinhoForm.get("products").value,
       unit: this.carrinhoForm.get("unit").value,
       amount: this.carrinhoForm.get("amount").value,
       price: this.carrinhoForm.get("price").value
@@ -118,6 +118,7 @@ export class FormVendasComponent implements OnInit {
           this.itemsCarrinho.forEach(element => {
             this.itemsCarrinho.pop();
           });
+          this.getProdutosVendidos();
         },
         error => {
           console.log("objetos ", error);

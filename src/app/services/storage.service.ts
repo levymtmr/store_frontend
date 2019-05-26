@@ -11,8 +11,15 @@ export class StorageService {
     return this.httpClient.get(this.baseUrl + "api/storages/");
   }
 
-  patchProduct(id, data) {
+  getProductInStorage(id) {
+    return this.httpClient.get(this.baseUrl + `api/storage/${id}`);
+  }
+
+  patchProductInStorage(id, data) {
     return this.httpClient.patch(this.baseUrl + `api/storages/${id}/`, data);
   }
+
+  postStorage(data) {
+    return this.httpClient.post(this.baseUrl + `api/storages/`, data);
+  }
 }
-//  'hospitalar/atendimentos/' + codigoAtendimento + '/prescricoes/' + codigoPrescricao + `/${this.tipoPrescricao}/${codigoItem}/suspender/`, data)

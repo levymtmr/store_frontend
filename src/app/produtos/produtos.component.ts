@@ -45,7 +45,7 @@ export class ProdutosComponent implements OnInit {
 
   getProduct(id) {
     return this.products.filter(products => {
-      return products.id == id;
+      return products.id === id;
     });
   }
 
@@ -58,8 +58,9 @@ export class ProdutosComponent implements OnInit {
 
   abrirFormAdicionarProduto() {
     this.contador += 1;
-    if (this.contador % 2 == 0) this.formAdicionarProdutoDisplay = true;
-    else {
+    if (this.contador % 2 !== 0) {
+      this.formAdicionarProdutoDisplay = true;
+    } else {
       this.formAdicionarProdutoDisplay = false;
     }
   }
@@ -86,6 +87,7 @@ export class ProdutosComponent implements OnInit {
     this.productService.postProduct(this.dados).subscribe(res => {
       console.log("cadastrando produto", res);
       this.formAdicionarProdutoDisplay = false;
+      this.getProducts();
     });
   }
 
@@ -108,17 +110,13 @@ export class ProdutosComponent implements OnInit {
     this.formAtualizarEstoque
       .get("atualizarValor")
       .setValue(this.getProduct(id)[0].price);
-    this.formAtualizarEstoque
-      .get("atualizarQuantidade")
-      .setValue(this.getProduct(id)[0].amount);
   }
 
   createFormAtualizarProduto() {
     this.formAtualizarEstoque = new FormGroup({
       atualizarNome: new FormControl("", Validators.required),
       atualizarData: new FormControl("", Validators.required),
-      atualizarValor: new FormControl("", Validators.required),
-      atualizarQuantidade: new FormControl("", Validators.required)
+      atualizarValor: new FormControl("", Validators.required)
     });
   }
 
@@ -126,8 +124,7 @@ export class ProdutosComponent implements OnInit {
     var dados = {
       name: this.formAtualizarEstoque.get("atualizarNome").value,
       date: this.formAtualizarEstoque.get("atualizarData").value,
-      price: this.formAtualizarEstoque.get("atualizarValor").value,
-      amount: this.formAtualizarEstoque.get("atualizarQuantidade").value
+      price: this.formAtualizarEstoque.get("atualizarValor").value
     };
     console.log("form atualizar dados", dados);
     this.productService.patchProduct(this.produtoSelecionado, dados).subscribe(
