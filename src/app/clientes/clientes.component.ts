@@ -1,36 +1,59 @@
-import { Component, OnInit } from "@angular/core";
-import { ClientService } from "../services/client.service";
-import { Cliente } from "../models/cliente.model";
+import { Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { ClientService } from '../services/client.service';
+import { Cliente } from '../models/cliente.model';
 
 @Component({
-  selector: "app-clientes",
-  templateUrl: "./clientes.component.html",
-  styleUrls: ["./clientes.component.scss"]
+  selector: 'app-clientes',
+  templateUrl: './clientes.component.html',
+  styleUrls: ['./clientes.component.scss']
 })
 export class ClientesComponent implements OnInit {
   clientes: Array<Cliente> = [];
+  cliente: any;
+  clienteForm: FormGroup;
   constructor(private clientService: ClientService) {}
 
   ngOnInit() {
     this.listClientes();
+    this.createForm();
   }
 
   listClienteById() {}
 
   listClientes() {
     this.clientService.getClients().subscribe(res => {
-      console.log("chamando clientes", res);
+      console.log('chamando clientes', res);
       this.clientes = res;
     });
   }
 
-  adicionarCliente(cliente) {
-    this.clientService.postCliente(cliente).subscribe(
+  createForm() {
+    this.clienteForm = new FormGroup({
+      name: new FormControl(null, Validators.required),
+      phone: new FormControl(null, Validators.required),
+      addres: new FormControl(null, Validators.required)
+    });
+  }
+
+
+
+  adicionarCliente() {
+    this.cliente = {
+      name: this.clienteForm.get('name').value,
+      phone: this.clienteForm.get('phone').value,
+      addres: this.clienteForm.get('addres').value
+    };
+    console.log("cliente", this.cliente);
+    this.clientService.postCliente(this.cliente).subscribe(
       res => {
-        console.log("res", res);
+        console.log('res', res);
+        this.listClientes();
       },
       error => {
-        console.log("error", error);
+        console.log('error', error);
       }
     );
   }
