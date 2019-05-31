@@ -1,3 +1,33 @@
-<p>
-  clientes works!
-</p>
+<div>
+    <div class="row">
+        <div class="col-sm-6">
+            <table class="table table-sm table-bordered table-striped table-hover tabela-cliente">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let cliente of clientes;">
+                    <th scope="row">{{cliente.id}}</th>
+                    <td>{{cliente.name}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group col-md-6">
+                <label for="">Nome Cliente</label>
+                <input class="form-control" type="text">
+                <label for="">Telefone</label>
+                <input class="form-control" type="text">
+                <label for="">Endereço</label>
+                <input class="form-control" type="text">
+                <br>
+                <button class="btn btn-primary mb-2">Adicionar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
