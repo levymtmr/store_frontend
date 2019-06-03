@@ -23,18 +23,20 @@
       </table>
     </div>
     <div class="col-sm-6">
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-6 form-cliente">
         <form [formGroup]="clienteForm">
           <label for="">Nome Cliente</label>
-          <input class="form-control" formControlName='name' type="text" />
+          <input class="form-control" formControlName="name" type="text" />
           <label for="">Telefone</label>
-          <input class="form-control" formControlName='phone' type="text" />
+          <input class="form-control" formControlName="phone" type="text" />
           <label for="">Endereço</label>
-          <input class="form-control" formControlName='addres' type="text" />
+          <input class="form-control" formControlName="addres" type="text" />
         </form>
 
         <br />
-        <button class="btn btn-primary mb-2" (click)="adicionarCliente()">Adicionar</button>
+        <button class="btn btn-primary mb-2" (click)="adicionarCliente()">
+          Adicionar
+        </button>
       </div>
     </div>
   </div>
