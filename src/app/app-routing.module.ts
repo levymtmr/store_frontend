@@ -12,7 +12,7 @@ import { ClientesComponent } from "./clientes/clientes.component";
 const routes: Routes = [
   { path: "vendas", component: FormVendasComponent },
   { path: "contas", component: ContasComponent },
-  { path: "home", component: PrincipalComponent },
+  { path: "", component: PrincipalComponent },
   { path: "estoque", component: EstoqueComponent },
   { path: "produtos", component: ProdutosComponent },
   { path: "clientes", component: ClientesComponent },

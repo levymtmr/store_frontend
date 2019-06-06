@@ -49,6 +49,13 @@ export class ProdutosComponent implements OnInit {
     });
   }
 
+  searchProduto(word) {
+    this.productService.searchProduct(word).subscribe(res => {
+      this.products = res;
+      console.log("res", res);
+    });
+  }
+
   getStorages() {
     this.storageService.getStorages().subscribe(storage => {
       this.storage = storage;

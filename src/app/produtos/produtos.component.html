@@ -6,6 +6,8 @@
         type="text"
         placeholder="Search"
         aria-label="Search"
+        #search
+        (keyup.enter)="searchProduto(search.value)"
       />
     </div>
     <table

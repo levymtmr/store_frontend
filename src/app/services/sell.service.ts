@@ -2,16 +2,21 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpEvent } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map, catchError, tap } from "rxjs/operators";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: "root"
 })
 export class SellService {
-  baseUrl = "http://localhost:7000/";
+  baseUrl = `${environment.API}`;
   constructor(private httpClient: HttpClient) {}
 
   getProductSells() {
     return this.httpClient.get(this.baseUrl + "api/sells/");
+  }
+
+  searchProducts(word) {
+    return this.httpClient.get(this.baseUrl + "api/sells/?search=" + word);
   }
 
   postProductSells(data) {

@@ -21,10 +21,11 @@ export class FormVendasComponent implements OnInit {
   dados: any;
   itemsCarrinho: Array<any> = [];
   nameCLiente: String;
+  searchForm: FormGroup;
 
   constructor(
     private product: ProductService,
-    private sellProduct: SellService,
+    private sellProductService: SellService,
     private modalService: BsModalService,
     private clienteService: ClientService
   ) {}
@@ -42,7 +43,7 @@ export class FormVendasComponent implements OnInit {
   }
 
   getProdutosVendidos() {
-    this.sellProduct.getProductSells().subscribe(sellProducts => {
+    this.sellProductService.getProductSells().subscribe(sellProducts => {
       this.sellProducts = sellProducts;
     });
   }
@@ -56,6 +57,13 @@ export class FormVendasComponent implements OnInit {
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, { class: "modal-lg" });
     this.createFormCarrinho();
+  }
+
+  searchProduct(search) {
+    this.sellProductService.searchProducts(search).subscribe(res => {
+      this.sellProducts = res;
+      console.log("res", res);
+    });
   }
 
   createFormCarrinho() {
@@ -87,7 +95,7 @@ export class FormVendasComponent implements OnInit {
   adicionarProdutoCarrinho() {
     const clienteId = this.carrinhoForm.get("client").value;
     const productId = this.carrinhoForm.get("products").value;
-    this.verificarExistente(this.itemsCarrinho);
+    // this.verificarExistente(this.itemsCarrinho);
     this.dados = {
       client_display: this.getCliente(clienteId)[0].name,
       product_display: this.getProduct(productId)[0].name,
@@ -98,6 +106,10 @@ export class FormVendasComponent implements OnInit {
       price: this.carrinhoForm.get("price").value
     };
     this.itemsCarrinho.push(this.dados);
+    this.carrinhoForm.get("products").reset();
+    this.carrinhoForm.get("unit").reset();
+    this.carrinhoForm.get("amount").reset();
+    this.carrinhoForm.get("price").reset();
   }
 
   dadosIsEmpty() {
@@ -111,7 +123,7 @@ export class FormVendasComponent implements OnInit {
   fecharPedido() {
     this.itemsCarrinho.forEach(element => {
       console.log("chamando", element);
-      this.sellProduct.postProductSells(element).subscribe(
+      this.sellProductService.postProductSells(element).subscribe(
         res => {
           console.log("response", res);
           this.carrinhoForm.reset();

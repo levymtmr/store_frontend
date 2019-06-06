@@ -1,10 +1,12 @@
 <div class="container ">
   <div class="md-form mt-0 tabela-detalhes">
     <input
+      #search
       class="form-control"
       type="text"
       placeholder="Search"
       aria-label="Search"
+      (keyup.enter)="searchProduct(search.value)"
     />
   </div>
   <div style="overflow-y: auto; width: 1125px; height:300px;">
@@ -70,6 +72,7 @@
       </select>
       <br />
       <div>
+        <label for="">Produto</label>
         <select class="form-control" formControlName="products">
           <option>Nome do Produto</option>
           <option *ngFor="let product of products" value="{{ product.id }}">{{
@@ -80,14 +83,11 @@
       </div>
       <div class="row">
         <div class="col-sm-4">
-          <input
-            class="form-control"
-            type="text"
-            placeholder="Quantidade"
-            formControlName="amount"
-          />
+          <label for="">Quantidade</label>
+          <input class="form-control" type="text" formControlName="amount" />
         </div>
         <div class="col-sm-4">
+          <label for="">Unidade</label>
           <select
             class="form-control"
             formControlName="unit"
@@ -101,12 +101,8 @@
           </select>
         </div>
         <div class="col-sm-4">
-          <input
-            class="form-control"
-            type="text"
-            placeholder="Valor"
-            formControlName="price"
-          />
+          <label for="">Valor</label>
+          <input class="form-control" type="text" formControlName="price" />
         </div>
       </div>
       <br />
