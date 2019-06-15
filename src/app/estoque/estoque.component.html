@@ -6,6 +6,8 @@
         type="text"
         placeholder="Search"
         aria-label="Search"
+        #search
+        (keyup.enter)="searchProdutoInEstoque(search.value)"
       />
     </div>
     <table
@@ -44,7 +46,7 @@
           class="btn btn-primary mb-2"
           (click)="abrirFormAdicionarProduto()"
         >
-          Adicionar Produto
+          Adicionar Quantidade
         </button>
       </div>
     </div>

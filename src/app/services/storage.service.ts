@@ -1,9 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
 
 @Injectable({ providedIn: "root" })
 export class StorageService {
-  baseUrl = "http://localhost:7000/";
+  baseUrl = `${environment.API}`;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -21,5 +22,9 @@ export class StorageService {
 
   postStorage(data) {
     return this.httpClient.post(this.baseUrl + `api/storages/`, data);
+  }
+
+  searchStorage(word) {
+    return this.httpClient.get(this.baseUrl + `api/storages/?search=` + word);
   }
 }
