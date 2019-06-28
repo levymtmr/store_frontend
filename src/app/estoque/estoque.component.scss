@@ -1,9 +1,12 @@
 .tabela-detalhes {
   // margin-top: 50px;
-  margin-left: 17%;
+  margin-top: 50px;
+  margin-left: 25%;
   width: 600px;
   font-family: absender;
   font-size: 15px;
+  overflow-y: auto; width: 1125px; height:300px;
+  position: relative;
 }
 
 .input-detalhes {
@@ -22,4 +25,10 @@
 
 .tr[ng-click] {
   cursor: pointer;
+}
+
+.search-detalhe {
+  margin-left: 26%;
+  position: absolute;
+  width: 100px;
 }
