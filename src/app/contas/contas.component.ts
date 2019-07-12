@@ -26,7 +26,6 @@ export class ContasComponent implements OnInit {
   listContas() {
     this.contaService.getContas().subscribe(res => {
       this.contas = res;
-      console.log("contas", res);
     });
   }
 
@@ -42,14 +41,12 @@ export class ContasComponent implements OnInit {
   listDespesas() {
     this.contaService.getContasCategory("despesas").subscribe(res => {
       this.despesas = res;
-      console.log("despesas", res);
     });
   }
 
   listMateriaPrima() {
     this.contaService.getContasCategory("Materia").subscribe(res => {
       this.materiasPrimas = res;
-      console.log("materia prima", res);
     });
   }
 
@@ -62,7 +59,6 @@ export class ContasComponent implements OnInit {
     };
     this.contaService.postConta(data).subscribe(
       res => {
-        console.log("res", res);
         this.listContas();
       },
       error => {

@@ -53,7 +53,6 @@ export class EstoqueComponent implements OnInit {
   getProdutosEstoque() {
     this.storageService.getStorages().subscribe(
       res => {
-        console.log("res", res);
         this.estoqueProdutos = res;
       },
       error => {
@@ -71,7 +70,6 @@ export class EstoqueComponent implements OnInit {
   getProdutosCadastrados() {
     this.produtoService.getProducts().subscribe(
       res => {
-        console.log("res", res);
         this.produtosCadastrados = res;
       },
       error => {

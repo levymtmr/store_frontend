@@ -25,7 +25,6 @@ export class ClientesComponent implements OnInit {
 
   listClientes() {
     this.clientService.getClients().subscribe(res => {
-      console.log('chamando clientes', res);
       this.clientes = res;
     });
   }
@@ -38,18 +37,14 @@ export class ClientesComponent implements OnInit {
     });
   }
 
-
-
   adicionarCliente() {
     this.cliente = {
       name: this.clienteForm.get('name').value,
       phone: this.clienteForm.get('phone').value,
       addres: this.clienteForm.get('addres').value
     };
-    console.log("cliente", this.cliente);
     this.clientService.postCliente(this.cliente).subscribe(
       res => {
-        console.log('res', res);
         this.listClientes();
       },
       error => {
