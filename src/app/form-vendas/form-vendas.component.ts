@@ -19,7 +19,6 @@ export class FormVendasComponent implements OnInit {
   sellProducts: any;
   clients: Array<Cliente>;
   modalRef: BsModalRef;
-  carrinhoForm: FormGroup;
   dados: any;
   itemsCarrinho: Array<any> = [];
   nameCLiente: String;
@@ -45,9 +44,10 @@ export class FormVendasComponent implements OnInit {
   }
 
   getProdutosVendidos() {
-    this.sellProductService.getProductSells().subscribe(sellProducts => {
+    const productSubscrib = this.sellProductService.getProductSells().subscribe(sellProducts => {
       this.sellProducts = sellProducts;
     });
+    // productSubscrib.unsubscribe();
   }
 
   getClientesForSell() {
@@ -56,11 +56,10 @@ export class FormVendasComponent implements OnInit {
     });
   }
 
-  openModal(template) {
-    this.modalRef = this.modalService.show(template, {
+  openModal() {
+    this.modalRef = this.modalService.show(FormVendasModalComponent, {
       class: "modal-lg"
     });
-    this.createFormCarrinho();
   }
 
   searchProduct(search) {
@@ -70,15 +69,7 @@ export class FormVendasComponent implements OnInit {
     });
   }
 
-  createFormCarrinho() {
-    this.carrinhoForm = new FormGroup({
-      client: new FormControl(null, Validators.required),
-      products: new FormControl(null, Validators.required),
-      unit: new FormControl(null, Validators.required),
-      amount: new FormControl(null, Validators.required),
-      price: new FormControl(null, Validators.required)
-    });
-  }
+ 
 
   getCliente(id) {
     return this.clients.filter(cliente => {
@@ -90,64 +81,5 @@ export class FormVendasComponent implements OnInit {
     return this.products.filter(product => {
       return product.id === id;
     });
-  }
-
-  verificarExistente(dados) {
-    console.log("verificar dados", dados);
-  }
-
-  async adicionarProdutoCarrinho() {
-    const clienteId = this.carrinhoForm.get("client").value;
-    const productId = this.carrinhoForm.get("products").value;
-
-    const client = await (<any>(
-      this.clienteService.getCliente(clienteId).toPromise()
-    ));
-
-    const product = await (<any>(
-      this.productService.getProduct(productId).toPromise()
-    ));
-
-    this.dados = {
-      client_display: client.name,
-      product_display: product.name,
-      client: clienteId,
-      products_storage: this.carrinhoForm.get("products").value,
-      unit: this.carrinhoForm.get("unit").value,
-      amount: this.carrinhoForm.get("amount").value,
-      price: this.carrinhoForm.get("price").value
-    };
-    this.itemsCarrinho.push(this.dados);
-    this.carrinhoForm.get("products").reset();
-    this.carrinhoForm.get("unit").reset();
-    this.carrinhoForm.get("amount").reset();
-    this.carrinhoForm.get("price").reset();
-  }
-
-  // fecharPedido() {
-  //   this.itemsCarrinho.forEach(element => {
-  //     console.log('chamando', element);
-  //     this.sellProductService.postProductSells(element).subscribe(
-  //       res => {
-  //         console.log('response', res);
-  //         this.carrinhoForm.reset();
-
-  //         this.getProdutosVendidos();
-  //       },
-  //       error => {
-  //         console.log('objetos ', error);
-  //       }
-  //     );
-  //   });
-  //   this.modalRef.hide();
-  // }
-
-  fecharPedido() {
-    this.itemsCarrinho.forEach(element => {
-      this.sellProductService.postProductSells(element).toPromise();
-    });
-    this.modalRef.hide();
-    this.getProdutosVendidos();
-    this.carrinhoForm.reset();
   }
 }

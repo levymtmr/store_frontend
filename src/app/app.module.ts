@@ -17,9 +17,12 @@ import { ProdutosComponent } from './produtos/produtos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ClientesComponent } from './clientes/clientes.component';
-import {FormVendasModalComponent} from './modals/form-vendas-modal/form-vendas-modal.component';
+import { FormVendasModalComponent } from './modals/form-vendas-modal/form-vendas-modal.component';
 
 @NgModule({
+  entryComponents:[ 
+    FormVendasModalComponent
+  ],
   declarations: [
     AppComponent,
     FormVendasComponent,
@@ -35,7 +38,6 @@ import {FormVendasModalComponent} from './modals/form-vendas-modal/form-vendas-m
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AppRoutingModule,
     TooltipModule.forRoot(),
     AccordionModule.forRoot(),
     SidebarModule.forRoot(),
