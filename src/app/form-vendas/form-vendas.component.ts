@@ -1,17 +1,18 @@
-import { ClientService } from './../services/client.service';
-import { Cliente } from './../models/cliente.model';
-import { SellService } from './../services/sell.service';
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { ProductService } from '../services/products.service';
-import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Produto } from '../models/produto.model';
-import {FormVendasModalComponent} from '../modals/form-vendas-modal/form-vendas-modal.component';
+import { ClientService } from "./../services/client.service";
+import { Cliente } from "./../models/cliente.model";
+import { SellService } from "./../services/sell.service";
+import { Component, OnInit, TemplateRef } from "@angular/core";
+import { ProductService } from "../services/products.service";
+import { BsModalService, BsModalRef, ModalOptions } from "ngx-bootstrap/modal";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Produto } from "../models/produto.model";
+import { FormVendasModalComponent } from "../modals/form-vendas-modal/form-vendas-modal.component";
+import { element } from "@angular/core/src/render3";
 
 @Component({
-  selector: 'app-form-vendas',
-  templateUrl: './form-vendas.component.html',
-  styleUrls: ['./form-vendas.component.scss']
+  selector: "app-form-vendas",
+  templateUrl: "./form-vendas.component.html",
+  styleUrls: ["./form-vendas.component.scss"]
 })
 export class FormVendasComponent implements OnInit {
   products: Array<Produto>;
@@ -25,7 +26,7 @@ export class FormVendasComponent implements OnInit {
   searchForm: FormGroup;
 
   constructor(
-    private product: ProductService,
+    private productService: ProductService,
     private sellProductService: SellService,
     private modalService: BsModalService,
     private clienteService: ClientService
@@ -38,7 +39,7 @@ export class FormVendasComponent implements OnInit {
   }
 
   get_name_products() {
-    this.product.getProducts().subscribe(products => {
+    this.productService.getProducts().subscribe(products => {
       this.products = products;
     });
   }
@@ -55,15 +56,17 @@ export class FormVendasComponent implements OnInit {
     });
   }
 
-  openModal() {
-    this.modalRef = this.modalService.show(FormVendasModalComponent, { class: 'modal-lg' });
-    // this.createFormCarrinho();
+  openModal(template) {
+    this.modalRef = this.modalService.show(template, {
+      class: "modal-lg"
+    });
+    this.createFormCarrinho();
   }
 
   searchProduct(search) {
     this.sellProductService.searchProducts(search).subscribe(res => {
       this.sellProducts = res;
-      console.log('res', res);
+      console.log("res", res);
     });
   }
 
@@ -90,45 +93,61 @@ export class FormVendasComponent implements OnInit {
   }
 
   verificarExistente(dados) {
-    console.log('verificar dados', dados);
+    console.log("verificar dados", dados);
   }
 
-  adicionarProdutoCarrinho() {
-    const clienteId = this.carrinhoForm.get('client').value;
-    const productId = this.carrinhoForm.get('products').value;
+  async adicionarProdutoCarrinho() {
+    const clienteId = this.carrinhoForm.get("client").value;
+    const productId = this.carrinhoForm.get("products").value;
+
+    const client = await (<any>(
+      this.clienteService.getCliente(clienteId).toPromise()
+    ));
+
+    const product = await (<any>(
+      this.productService.getProduct(productId).toPromise()
+    ));
+
     this.dados = {
-      client_display: this.getCliente(clienteId)[0].name,
-      product_display: this.getProduct(productId)[0].name,
+      client_display: client.name,
+      product_display: product.name,
       client: clienteId,
-      products_storage: this.carrinhoForm.get('products').value,
-      unit: this.carrinhoForm.get('unit').value,
-      amount: this.carrinhoForm.get('amount').value,
-      price: this.carrinhoForm.get('price').value
+      products_storage: this.carrinhoForm.get("products").value,
+      unit: this.carrinhoForm.get("unit").value,
+      amount: this.carrinhoForm.get("amount").value,
+      price: this.carrinhoForm.get("price").value
     };
     this.itemsCarrinho.push(this.dados);
-    this.carrinhoForm.get('products').reset();
-    this.carrinhoForm.get('unit').reset();
-    this.carrinhoForm.get('amount').reset();
-    this.carrinhoForm.get('price').reset();
+    this.carrinhoForm.get("products").reset();
+    this.carrinhoForm.get("unit").reset();
+    this.carrinhoForm.get("amount").reset();
+    this.carrinhoForm.get("price").reset();
   }
+
+  // fecharPedido() {
+  //   this.itemsCarrinho.forEach(element => {
+  //     console.log('chamando', element);
+  //     this.sellProductService.postProductSells(element).subscribe(
+  //       res => {
+  //         console.log('response', res);
+  //         this.carrinhoForm.reset();
+
+  //         this.getProdutosVendidos();
+  //       },
+  //       error => {
+  //         console.log('objetos ', error);
+  //       }
+  //     );
+  //   });
+  //   this.modalRef.hide();
+  // }
 
   fecharPedido() {
     this.itemsCarrinho.forEach(element => {
-      console.log('chamando', element);
-      this.sellProductService.postProductSells(element).subscribe(
-        res => {
-          console.log('response', res);
-          this.carrinhoForm.reset();
-          this.itemsCarrinho.forEach(element => {
-            this.itemsCarrinho.pop();
-          });
-          this.getProdutosVendidos();
-        },
-        error => {
-          console.log('objetos ', error);
-        }
-      );
+      this.sellProductService.postProductSells(element).toPromise();
     });
     this.modalRef.hide();
+    this.getProdutosVendidos();
+    this.carrinhoForm.reset();
   }
 }

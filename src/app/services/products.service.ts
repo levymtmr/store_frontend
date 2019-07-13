@@ -1,10 +1,11 @@
 import { Produto } from "./../models/produto.model";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
 
 @Injectable({ providedIn: "root" })
 export class ProductService {
-  baseUrl = "http://localhost:7000/";
+  baseUrl = `${environment.API}`;
   constructor(private httpClient: HttpClient) {}
 
   getProducts() {
