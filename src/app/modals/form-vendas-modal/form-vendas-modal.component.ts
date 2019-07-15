@@ -11,18 +11,18 @@ import { SellService } from 'src/app/services/sell.service';
   styleUrls: ["./form-vendas-modal.component.scss"]
 })
 export class FormVendasModalComponent implements OnInit, OnDestroy {
-  dados: any;
-  carrinhoForm: FormGroup;
+  item: any;
+  itemForm: FormGroup;
   clients: any;
   products: any;
-  itemsCarrinho: Array<any> = [];
+  itemsInCart: Array<any> = [];
 
   constructor(
     private modalService: BsModalService,
     private modalRef: BsModalRef,
     private clientService: ClientService,
     private productService: ProductService,
-    private sellProductService: SellService, 
+    private sellProductService: SellService 
   ) {}
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class FormVendasModalComponent implements OnInit, OnDestroy {
 
 
   createForm() {
-    this.carrinhoForm = new FormGroup({
+    this.itemForm = new FormGroup({
       client: new FormControl(null, Validators.required),
       products: new FormControl(null, Validators.required),
       unit: new FormControl(null, Validators.required),
@@ -52,28 +52,28 @@ export class FormVendasModalComponent implements OnInit, OnDestroy {
     });
   }
 
-  async addItemCarrinho() {
-    const client = <any> await this.clientService.getCliente(this.carrinhoForm.get('client').value).toPromise();
-    const product = <any> await this.productService.getProduct(this.carrinhoForm.get('products').value).toPromise();
-    const dados = {
+  async addItemInCart() {
+    const client = <any> await this.clientService.getCliente(this.itemForm.get('client').value).toPromise();
+    const product = <any> await this.productService.getProduct(this.itemForm.get('products').value).toPromise();
+    const item = {
       client_display: client.name,
       product_display: product.name,
       client: client.id,
       products_storage: product.id,
-      unit: this.carrinhoForm.get('unit').value,
-      amount: this.carrinhoForm.get('amount').value,
-      price: this.carrinhoForm.get('price').value
+      unit: this.itemForm.get('unit').value,
+      amount: this.itemForm.get('amount').value,
+      price: this.itemForm.get('price').value
     };
-   this.itemsCarrinho.push(dados);
+   this.itemsInCart.push(item);
   }
 
-  async fecharPedido() {
-    this.itemsCarrinho.forEach(element => {
+  async effectAllItemsInCart() {
+    this.itemsInCart.forEach(element => {
       this.sellProductService.postProductSells(element).toPromise();
     });
     await this.sellProductService.getProductSells().toPromise();
     this.modalRef.hide();
-    this.carrinhoForm.reset();
+    this.itemForm.reset();
   }
 
   closeModal() {
