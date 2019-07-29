@@ -11,11 +11,13 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
