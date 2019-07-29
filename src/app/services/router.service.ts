@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class RouterService {
-  public VENDA_PATH = "vendas";
-  public static VENDA_PATH = "vendas";
+  public VENDA_PATH = 'vendas';
+  public static VENDA_PATH = 'vendas';
 
-  public COMPRA_PATH = "compra";
-  public static COMPRA_PATH = "compra";
+  public COMPRA_PATH = 'compra';
+  public static COMPRA_PATH = 'compra';
 
-  public PRODUTO_PATH = "produto";
-  public static PRODUTO_PATH = "produto";
+  public PRODUTO_PATH = 'produto';
+  public static PRODUTO_PATH = 'produto';
 
   constructor(private router: Router) {}
 
