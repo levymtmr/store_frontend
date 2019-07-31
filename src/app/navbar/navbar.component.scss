@@ -1,10 +1,14 @@
 .navbar-detalhes {
   font-family: absender;
   src: url("/assets/font/absender1.ttf");
-  border-top-left-radius: 100px;
-  border-bottom-left-radius: 100px;
+  width: 100%;
   background-color: #f3efef;
-  height: 70%;
+  height: 100%;
+}
+
+.posistion-logo {
+  // position: absolute;
+  margin-left: 350px;
 }
 
 .tamanho-navbar {

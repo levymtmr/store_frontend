@@ -22,10 +22,5 @@ export class ApiServices {
       .pipe(catchError(this.formatErrors));
   }
 
-  // get(path: string, params: HttpParams = new HttpParams()): Promise<any> {
-  //   return this.http.get(this.baseUrl + `${path}`, { params })
-  //     .pipe(catchError(this.formatErrors));
-  // }
-
 
 }
