@@ -1,0 +1,30 @@
+<div class="card text-center login-card">
+  <div class="card-body">
+    <div class="row">
+      <form [formGroup]="loginForm" action="">
+        <div class="col-sm-10">
+          <label class="login-labels">Login</label>
+          <input class="login-input" formControlName="login" type="text" />
+        </div>
+        <div class="col-sm-10">
+          <label class="login-labels">Email</label>
+          <input class="login-input" formControlName="email" type="text" />
+        </div>
+        <div class="col-sm-10">
+          <label class="login-labels">Senha</label>
+          <input
+            class="login-input"
+            formControlName="password"
+            type="password"
+          />
+        </div>
+        <div class="col-sm-10">
+          <a class="btn btn-primary login-button" (click)="login()">Login</a>
+        </div>
+        <div class="col-sm-10 lbl-cadastro">
+          <a href="">Cadastre-se</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

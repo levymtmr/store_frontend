@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import {Product} from '../models/product.models';
-import {ProductService} from '../services/product.service';
-import {FormControl, FormGroup} from '@angular/forms';
-import {ApiServices} from '../services/api-services';
+import { Component, OnInit } from "@angular/core";
+import { Product } from "../models/product.models";
+import { ProductService } from "../services/product.service";
+import { FormControl, FormGroup } from "@angular/forms";
+import { ApiServices } from "../services/api-services";
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  selector: "app-products",
+  templateUrl: "./products.component.html",
+  styleUrls: ["./products.component.scss"]
 })
 export class ProductsComponent implements OnInit {
-
   public productForm: FormGroup;
 
-
-  constructor(private productsService: ProductService, private apiService: ApiServices) { }
-
+  constructor(
+    private productsService: ProductService,
+    private apiService: ApiServices
+  ) {}
 
   ngOnInit() {
     this.getProducts();
@@ -36,9 +36,9 @@ export class ProductsComponent implements OnInit {
 
   async getProducts() {
     let products: Product;
-    products = <Product> await this.apiService.get('products').toPromise();
-    console.log('produtos', products);
-    console.log('tipo', typeof(products));
+    products = <Product>await this.apiService.get("api/products/").toPromise();
+    console.log("produtos", products);
+    console.log("tipo", typeof products);
   }
 
   getDataForm(): Product {
@@ -55,9 +55,7 @@ export class ProductsComponent implements OnInit {
   createProduct() {
     const data = this.getDataForm();
     this.productsService.postProduct(data).subscribe(res => {
-      console.log('criando um produto', res);
+      console.log("criando um produto", res);
     });
   }
-
-
 }

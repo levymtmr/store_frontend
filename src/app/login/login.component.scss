@@ -1,0 +1,40 @@
+.login-card {
+  width: 13.8rem;
+  // width: 15%;
+  margin-left: 40%;
+  margin-top: 10%;
+  position: relative;
+  background-color: #f3efef;
+}
+
+.login-button {
+  font-family: absender;
+  src: url("/assets/font/absender1.ttf");
+  background-color: #fff47e;
+  color: black;
+  border-color: #fff47e;
+  margin-top: 10%;
+  margin-left: 23%;
+}
+
+.login-input {
+  margin-left: 2%;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  // font-family: absender;
+  // src: url("/assets/font/absender1.ttf");
+}
+
+.login-labels {
+  text-align: center;
+  font-family: absender;
+  src: url("/assets/font/absender1.ttf");
+  margin-left: 23%;
+}
+
+.lbl-cadastro {
+  margin-top: 5%;
+  margin-left: 9%;
+}
