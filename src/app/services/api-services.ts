@@ -22,13 +22,13 @@ export class ApiServices {
       .pipe(catchError(this.formatErrors));
   }
 
-  // post(path: string, body: Object = {}): Observable<any> {
-  //   return this.http
-  //     .post(this.baseUrl + `${path}`, JSON.stringify(body))
-  //     .pipe(catchError(this.formatErrors));
-  // }
-
-  post(data): Observable<any> {
-    return this.http.post(this.baseUrl + "login/", data);
+  post(path: string, body: Object = {}): Observable<any> {
+    return this.http
+      .post(this.baseUrl + `${path}`, body)
+      .pipe(catchError(this.formatErrors));
   }
+
+  // post(data): Observable<any> {
+  //   return this.http.post(this.baseUrl + "login/", data);
+  // }
 }

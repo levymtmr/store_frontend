@@ -1,4 +1,4 @@
-<div class="card text-center login-card">
+<!-- <div class="card text-center login-card">
   <div class="card-body">
     <div class="row">
       <form [formGroup]="loginForm" action="">
@@ -26,5 +26,39 @@
         </div>
       </form>
     </div>
+  </div>
+</div> -->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <a class="navbar-brand" href="#">
+        <img
+          [src]="url"
+          width="60"
+          height="60"
+          class="d-inline-block align-top posistion-logo"
+          alt=""
+        />
+      </a>
+    </div>
+
+    <!-- Login Form -->
+    <form>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuário">
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="senha">
+      <input type="submit" class="fadeIn fourth" value="Entrar">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+        <a class="underlineHover" href="#">Cadastra-se</a>
+        <br>
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
   </div>
 </div>

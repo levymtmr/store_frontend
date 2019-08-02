@@ -9,6 +9,7 @@ import { ApiServices } from "../services/api-services";
   styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
+  private url = 'assets/images/petgula.png';
   loginForm: FormGroup;
 
   constructor(private apiServices: ApiServices) {}
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  getDataLoginForm(): User {
+  getDataLoginForm() {
     return this.loginForm.value as User;
   }
 
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
     //   email: this.loginForm.get("email").value,
     //   password: this.loginForm.get("password")
     // };
-    this.apiServices.post(userData).subscribe(res => {
+    this.apiServices.post('login/', userData).subscribe(res => {
       console.log("res", res);
     });
   }
