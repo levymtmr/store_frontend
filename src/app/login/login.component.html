@@ -47,10 +47,12 @@
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuário">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="senha">
-      <input type="submit" class="fadeIn fourth" value="Entrar">
+    <form [formGroup]="loginForm">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuário" formControlName="username">
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="senha" formControlName="password">
+      <!-- <button type="submit" class="fadeIn fourth" value="Entrar"> -->
+        <br>
+      <Button (click)="login()">Login</Button>
     </form>
 
     <!-- Remind Passowrd -->

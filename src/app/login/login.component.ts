@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
 
   createLoginForm() {
     this.loginForm = new FormGroup({
-      login: new FormControl(null, Validators.required),
-      email: new FormControl(null, Validators.required),
+      username: new FormControl(null, Validators.required),
+      // email: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required)
     });
   }
@@ -31,13 +31,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const userData = this.getDataLoginForm();
-    // const userData = {
-    //   login: this.loginForm.get("login").value,
-    //   email: this.loginForm.get("email").value,
-    //   password: this.loginForm.get("password")
-    // };
-    this.apiServices.post('login/', userData).subscribe(res => {
+    // const userData = this.getDataLoginForm();
+    const userData = {
+      username: this.loginForm.get("username").value,
+      // email: this.loginForm.get("email").value,
+      password: this.loginForm.get("password").value
+    };
+    this.apiServices.post('api/token/', userData).subscribe(res => {
       console.log("res", res);
     });
   }
