@@ -1,12 +1,12 @@
-import { User } from "./../models/user.models";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Component, OnInit } from "@angular/core";
-import { ApiServices } from "../services/api-services";
+import { User } from './../models/user.models';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { ApiServices } from '../services/api-services';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   private url = 'assets/images/petgula.png';
@@ -30,15 +30,20 @@ export class LoginComponent implements OnInit {
     return this.loginForm.value as User;
   }
 
-  login() {
-    // const userData = this.getDataLoginForm();
-    const userData = {
-      username: this.loginForm.get("username").value,
-      // email: this.loginForm.get("email").value,
-      password: this.loginForm.get("password").value
-    };
-    this.apiServices.post('api/token/', userData).subscribe(res => {
-      console.log("res", res);
-    });
+  login(username: string, password: string) {
+
   }
+
+  // login() {
+  //   const userData = {
+  //     username: this.loginForm.get('username').value,
+  //     password: this.loginForm.get('password').value
+  //   };
+  //   this.apiServices.post('api/token/', userData).then(res => {
+  //     console.log('chamando', res);
+  //   }).catch(error => {
+  //     console.log('chamando error', error);
+  //   });
+  //   }
+  
 }
