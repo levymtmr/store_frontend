@@ -1,6 +1,5 @@
 import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { JWTPayload } from '../models/jwtpayload.models';
 import { environment } from 'src/environments/environment';
 
 import * as jwtDecode from 'jwt-decode';
@@ -94,6 +93,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  path: import("@angular/router").ActivatedRouteSnapshot[];
+  route: import("@angular/router").ActivatedRouteSnapshot;
 
   constructor(private authService: AuthService, private router: Router) { }
 

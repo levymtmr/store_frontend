@@ -8,7 +8,7 @@ import { RouterService } from '../services/router.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  private url = 'assets/images/petgula.png';
+  public url = 'assets/images/petgula.png';
   router: Router;
 
   constructor(private routerService: RouterService) {}

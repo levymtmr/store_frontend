@@ -22,17 +22,17 @@ export class ApiServices {
       .pipe(catchError(this.formatErrors));
   }
 
-  // post(path: string, body: Object = {}): Observable<any> {
-  //   return this.http
-  //     .post(this.baseUrl + `${path}`, body)
-  //     .pipe(catchError(this.formatErrors));
-  // }
-
-  post(path: string, body: Object = {}): Promise<any> {
+  post(path: string, body: Object = {}): Observable<any> {
     return this.http
-      .post(this.baseUrl + `${path}`, body).toPromise();
-      // .pipe(catchError(this.formatErrors));
+      .post(this.baseUrl + `${path}`, body)
+      .pipe(catchError(this.formatErrors));
   }
+
+  // post(path: string, body: Object = {}): Promise<any> {
+  //   return this.http
+  //     .post(this.baseUrl + `${path}`, body).toPromise();
+  //     // .pipe(catchError(this.formatErrors));
+  // }
 
  
 }

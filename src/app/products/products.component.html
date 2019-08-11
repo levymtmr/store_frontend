@@ -1,9 +1,16 @@
-<form [formGroup]="productForm">
-    <input type="text" formControlName="name" placeholder="name">
-    <input type="text" formControlName="price" placeholder="price">
-    <input type="date" formControlName="date" placeholder="date">
-    <input type="text" formControlName="description" placeholder="description">
-    <input type="text" formControlName="quantity" placeholder="quantity">
-    <input type="text" formControlName="category" placeholder="category">
-    <button (click)="createProduct()">Adicionar Produto</button>
-</form>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3 section">
+       <img src="https://s3-eu-west-1.amazonaws.com/w3.cdn.gpd/br.pedigree.58/large_03633609-cc7a-4212-aad7-8091dcf3c80b.png" width=80%>
+    </div>
+    <div class="col-sm-3 section">
+        <img src="https://www.petlove.com.br/images/products/202844/product/PEDIGREE-CARNE-VEGETAIS-10_1kg_3104862-3.jpg?1556393149" width=100% height=100%>
+    </div>
+    <div class="col-sm-3 section">
+        <img [src]="image1" alt="">
+    </div>
+    <div class="col-sm-3 section">
+        <img [src]="image1" alt="">
+    </div>
+  </div>
+</div>

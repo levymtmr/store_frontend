@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
   createLoginForm() {
     this.loginForm = new FormGroup({
       username: new FormControl(null, Validators.required),
-      // email: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required)
     });
   }
@@ -30,20 +29,15 @@ export class LoginComponent implements OnInit {
     return this.loginForm.value as User;
   }
 
-  login(username: string, password: string) {
-
-  }
-
-  // login() {
-  //   const userData = {
-  //     username: this.loginForm.get('username').value,
-  //     password: this.loginForm.get('password').value
-  //   };
-  //   this.apiServices.post('api/token/', userData).then(res => {
-  //     console.log('chamando', res);
-  //   }).catch(error => {
-  //     console.log('chamando error', error);
-  //   });
-  //   }
-  
+  async login() {
+    const userData = {
+      username: this.loginForm.get('username').value,
+      password: this.loginForm.get('password').value
+    };
+    try {
+      const response = await this.apiServices.post('api/token/', userData).toPromise();
+    } catch (error) {
+      console.log("error", error);
+      }
+    }
 }

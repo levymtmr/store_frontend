@@ -1,15 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { Product } from "../models/product.models";
-import { ProductService } from "../services/product.service";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ApiServices } from "../services/api-services";
+import { Component, OnInit } from '@angular/core';
+import { Product } from '../models/product.models';
+import { ProductService } from '../services/product.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiServices } from '../services/api-services';
 
 @Component({
-  selector: "app-products",
-  templateUrl: "./products.component.html",
-  styleUrls: ["./products.component.scss"]
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+  public image1 = 'assets/images/pedigree_argm.png';
   public productForm: FormGroup;
 
   constructor(
@@ -35,10 +36,10 @@ export class ProductsComponent implements OnInit {
   }
 
   async getProducts() {
-    let products: Product;
-    products = <Product>await this.apiService.get("api/products/").toPromise();
-    console.log("produtos", products);
-    console.log("tipo", typeof products);
+    try {
+      const products = <Product>await this.apiService.get('api/products/').toPromise();
+    } catch (error) {
+    }
   }
 
   getDataForm(): Product {
@@ -48,7 +49,7 @@ export class ProductsComponent implements OnInit {
   createProduct() {
     const data = this.getDataForm();
     this.productsService.postProduct(data).subscribe(res => {
-      console.log("criando um produto", res);
+      console.log('criando um produto', res);
     });
   }
 }
