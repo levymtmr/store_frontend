@@ -14,6 +14,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ProductsComponent } from './products/products.component';
 import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ModalLoginComponent } from './modals/modal-login/modal-login.component';
+import { SellsComponent } from './sells/sells.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ProductsComponent,
     LoginComponent,
     SidebarComponent,
+    ModalLoginComponent,
+    SellsComponent,
   ],
+  entryComponents: [ModalLoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,7 +38,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     AngularFontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

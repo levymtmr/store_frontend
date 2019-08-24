@@ -1,0 +1,34 @@
+<!-- <div class="wrapper fadeInDown"> -->
+  <!-- <div id="formContent"> -->
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="wrapper fadeInDown fadeIn first">
+      <a class="navbar-brand" href="#">
+        <img
+          [src]="url"
+          width="60"
+          height="60"
+          class="d-inline-block align-top posistion-logo picture"
+          alt=""
+        />
+      </a>
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuário" formControlName="username">
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="senha" formControlName="password">
+        <br>
+      <Button class="navbar-toggler btn-login" (click)="login()">Login</Button>
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+        <a class="underlineHover" href="#">Cadastra-se</a>
+        <br>
+      
+    </div>
+
+  <!-- </div>  -->
+<!-- </div> -->

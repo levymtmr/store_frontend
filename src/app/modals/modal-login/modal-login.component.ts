@@ -1,14 +1,14 @@
-import { User } from './../models/user.models';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ApiServices } from '../services/api-services';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ApiServices } from 'src/app/services/api-services';
+import { User } from 'src/app/models/user.models';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-modal-login',
+  templateUrl: './modal-login.component.html',
+  styleUrls: ['./modal-login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class ModalLoginComponent implements OnInit {
   private url = 'assets/images/petgula.png';
   loginForm: FormGroup;
   username: String;
@@ -42,4 +42,5 @@ export class LoginComponent implements OnInit {
       console.log('error', error);
       }
     }
+
 }

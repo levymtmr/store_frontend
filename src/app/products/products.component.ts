@@ -10,7 +10,8 @@ import { ApiServices } from '../services/api-services';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  public image1 = 'assets/images/pedigree_argm.png';
+  public image1 = 'assets/images/pedigree_carne_frango_cereais.png';
+  public image2 = 'assets/images/pedigree_junior.png';
   public productForm: FormGroup;
 
   constructor(

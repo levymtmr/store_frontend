@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   refreshToken() {
-    if(moment().isBetween(this.getExpiration().subtract(1, 'days'), this.getExpiration())) {
+    if (moment().isBetween(this.getExpiration().subtract(1, 'days'), this.getExpiration())) {
       return this.http.post(
         this.baseUrl + 'api/token/refresh', {token: this.token}).pipe(
           tap(response => this.setSession(response)),
@@ -93,8 +93,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  path: import("@angular/router").ActivatedRouteSnapshot[];
-  route: import("@angular/router").ActivatedRouteSnapshot;
+  path: import('@angular/router').ActivatedRouteSnapshot[];
+  route: import('@angular/router').ActivatedRouteSnapshot;
 
   constructor(private authService: AuthService, private router: Router) { }
 

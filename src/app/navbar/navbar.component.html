@@ -1,5 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light tamanho-navbar">
-  <div class="collapse navbar-collapse" id="navbarNav">
+
+<nav class="navbar navbar-expand-lg navbar-light navbar-detalhes">
+  <div class="tamanho-navbar">
     <a class="navbar-brand picture">
       <img
         [src]="url"
@@ -8,6 +9,7 @@
         class="d-inline-block align-top posistion-logo"
       />
     </a>
+  </div>
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="#" routerLink="/products">Cachorros</a>
@@ -33,16 +35,21 @@
       <li class="nav-item">
         <a class="nav-link" href="#" routerLink="/produtos">Servicos</a>
       </li>
-      <input type="text" class="input-search" />
-      <button class="input-button">Pesquisar</button>
-      <li class="nav-item">
-        <a class="nav-link" href="#" routerLink="/login">Login</a>
-      </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="#" routerLink="/produtos">Carrinho</a>
       </li>
+      <img src="assets/icons/instagram-brands.svg" width=3% height=2%>
+      <input type="text" class="input-search" />
+      <button class="input-button">Pesquisar</button>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="login()">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="/vendas">Vendas</a>
+      </li>
     </ul>
-  </div>
+  
 </nav>
 
 

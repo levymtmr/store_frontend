@@ -1,8 +1,12 @@
 .navbar-detalhes {
   width: 100%;
+  margin-top: 2%;
   background-color: #f3efef;
-  width: 18rem;
   height: 5rem;
+}
+
+ul {
+  margin-left: 5%;
 }
 
 .tamanho-navbar {
@@ -13,6 +17,7 @@
   width: 100%;
   border-radius: 5px;
   font-size: 20px;
+  margin-left: 3%;
 }
 
 .input-button {
@@ -25,7 +30,7 @@ ul {
 }
 
 .picture {
-  margin-left: 15%;
+  margin-left: 50%;
   src: url("/assets/font/absender1.ttf");
 }
 
