@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiServices } from '../services/api-services';
 
 @Component({
   selector: 'app-sells',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SellsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _apiServices: ApiServices ) { }
 
   ngOnInit() {
+    this.getProducts();
+  }
+
+  async getProducts() {
+    const products = await this._apiServices.get('api/products/').toPromise();
+    console.log("produtos", products);
   }
 
 }
