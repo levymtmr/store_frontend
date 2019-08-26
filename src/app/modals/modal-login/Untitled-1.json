@@ -5,11 +5,11 @@
   "active": false,
   "user": 25,
   "order_details": [
-    "price": null,
-    "quantity": null,
-    "discount": null,
-    "total": null, 
-    "products":[{
+    {"price": 120,
+    "quantity": 2,
+    "discount": 0,
+    "total": 240, 
+    "products": [{
         "id": 25,
         "name": "Friskies mix selecao saborosa 10kg",
         "price": "120.000",
@@ -17,7 +17,7 @@
         "description": "Saca de ração seca para gatos",
         "quantity": "5.00",
         "category": 2
-    },]
+    }]}
   ]
 }
 
@@ -78,3 +78,30 @@
 
 
 criar produto> criar ordem> criar ordem detalhada>
+
+{
+    "order_date": "2019-08-23",
+    "ship_date": "2019-08-23",
+    "payment": 3,
+    "active": false,
+    "user": 25,
+    "order_details": [{
+        "price": 120,
+        "quantity": 1,
+        "discount": 0,
+        "total": 120,
+        "products": 25,
+        "user": 25
+    }
+        
+    ]
+  }
+
+
+
+"id": 3,
+"price": "120.00",
+"quantity": 1,
+"discount": "0.000",
+"products": 25,
+"user": 23

@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ModalLoginComponent } from './modals/modal-login/modal-login.component';
 import { SellsComponent } from './sells/sells.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SellsComponent } from './sells/sells.component';
     ReactiveFormsModule,
     FormsModule,
     ModalModule.forRoot(),
+    TypeaheadModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
