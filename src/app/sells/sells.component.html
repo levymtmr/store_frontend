@@ -1,9 +1,164 @@
-<div class="container">
-<form>
-  <label for="">Cliente</label><br>
-  <label for="">Produtos</label><br>
-  <label for="">Total</label>
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <div class="col-sm-6 order-detail-form">-->
+<!--      <form [formGroup]="sellForm">-->
+<!--        <div class="row">-->
+<!--          <div class="col">-->
+<!--            <label >Clientes</label>-->
+<!--            <select class="form-control" formControlName="users">-->
+<!--              <option value="{{ user.id }}" *ngFor="let user of users">{{-->
+<!--                user.username-->
+<!--              }}</option>-->
+<!--              <small *ngIf="hasError('users')">{{-->
+<!--                errorMessages['users']-->
+<!--              }}</small>-->
+<!--            </select>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--          <div class="col">-->
+<!--            <label>Produtos</label>-->
+<!--            <select-->
+<!--              class="form-control"-->
+<!--              formControlName="product"-->
+<!--            >-->
+<!--              <option *ngFor="let item of products" value="{{ item.id }}">{{-->
+<!--                item.name-->
+<!--              }}</option>-->
+<!--            </select>-->
+<!--            <small *ngIf="hasError('products')">{{-->
+<!--              errorMessages['products']-->
+<!--            }}</small>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--          <div class="col-sm-2">-->
+<!--            <label>Valor</label>-->
+<!--            <input class="form-control" type="text" formControlName="price" />-->
+<!--            <small *ngIf="hasError('price')">{{-->
+<!--              errorMessages['price']-->
+<!--            }}</small>-->
+<!--          </div>-->
+<!--          <div class="col-sm-2">-->
+<!--            <label>Quantidade</label>-->
+<!--            <input-->
+<!--              class="form-control"-->
+<!--              type="text"-->
+<!--              formControlName="quantity"-->
+<!--            />-->
+<!--            <small *ngIf="hasError('quantity')">{{-->
+<!--              errorMessages['quantity']-->
+<!--            }}</small>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="row"></div>-->
+<!--        <div class="row">-->
+<!--          <div class="col">-->
+<!--            <label>Desconto</label>-->
+<!--            <input-->
+<!--              class="form-control descont"-->
+<!--              type="text"-->
+<!--              formControlName="discount"-->
+<!--            />-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <br />-->
+<!--        <button (click)="createOrdeDetail()" class="btn btn-primary">-->
+<!--          Adicionar-->
+<!--        </button>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--    <div class="col-sm-6">-->
+<!--      <table class="table">-->
+<!--        <thead>-->
+<!--          <tr>-->
+<!--            <th scope="col">#</th>-->
+<!--            <th scope="col">Número</th>-->
+<!--            <th scope="col">Produto</th>-->
+<!--            <th scope="col">Total</th>-->
+<!--          </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr>-->
+<!--          <th>-</th>-->
+<!--          <td>-</td>-->
+<!--          <td>-</td>-->
+<!--          <td>-</td>-->
+<!--        </tr>-->
+<!--          <tr *ngFor="let item of tableProducts">-->
+<!--            <th scope="row">1</th>-->
+<!--            <td>{{ item.ordem }}</td>-->
+<!--            <td>{{ item.name }}</td>-->
+<!--            <td>{{ item.total }}</td>-->
+<!--          </tr>-->
+<!--        </tbody>-->
+<!--      </table>-->
+<!--      <div class="form-payment">-->
+<!--        <Label>Forma de Pagamento</Label>-->
+<!--      <form [formGroup]="orderForm">-->
+<!--        <select class="form-control" formControlName="payment">-->
+<!--          <option-->
+<!--            *ngFor="let payment of paymentMethods"-->
+<!--            value="{{ payment.id }}"-->
+<!--            >{{ payment.payment_type }}</option-->
+<!--          >-->
+<!--        </select>-->
+<!--        <small *ngIf="hasError('payment')">{{-->
+<!--          errorMessages['payment']-->
+<!--        }}</small>-->
+<!--      </form>-->
+<!--      <br />-->
+<!--      <button class="btn btn-primary" (click)="finishOrder()">-->
+<!--        Fechar Pedido-->
+<!--      </button>-->
+<!--      <br />-->
+<!--      <br />-->
+<!--      <div *ngIf="sellSuccess" class="alert alert-success" role="alert">-->
+<!--        Venda Finalizada com sucesso!-->
+<!--      </div>-->
+<!--      </div>-->
 
 
-</form>
+<!--    </div>-->
+<!--  </div>-->
+<!--  <button class="btn btn-primary" (click)="openModalMakeSell()">Fazer Venda</button>-->
+<!--</div>-->
+<div class="row">
+  <div class="col-sm-9 products-section">
+    <Form [formGroup]="sellForm">
+      <label>Produtos</label>
+            <select
+              class="form-control"
+              formControlName="product"
+            >
+              <option *ngFor="let item of products" value="{{ item.id }}">{{
+                item.name
+              }}</option>
+            </select>
+            <small *ngIf="hasError('products')">{{
+              errorMessages['products']
+            }}</small>
+    </Form>
+
+    <br>
+    <button (click)="openModalQuantity()">Adicionar Produto</button>
+  </div>
+  <div class="col-sm-3 resume-section">
+    <h2>Venda Atual</h2>
+    <div>
+      Vendedor: "vendedor.nome"
+    </div>
+    <div class="box-items">
+      <ul>
+        <li>Quantidade x Produto A valor X</li>
+        <li>B</li>
+        <li>C</li>
+        <li>D</li>
+        <li>E</li>
+      </ul>
+    </div>
+    <div class="footer-resume">
+    <button class="btn-finish-resume">Fechar Pedido</button>
+    </div>
+  </div>
 </div>

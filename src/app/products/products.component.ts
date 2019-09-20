@@ -13,6 +13,7 @@ export class ProductsComponent implements OnInit {
   public image1 = 'assets/images/pedigree_carne_frango_cereais.png';
   public image2 = 'assets/images/pedigree_junior.png';
   public productForm: FormGroup;
+  products: Product;
 
   constructor(
     private productsService: ProductService,
@@ -38,9 +39,11 @@ export class ProductsComponent implements OnInit {
 
   async getProducts() {
     try {
-      const products = <Product>await this.apiService.get('api/products/').toPromise();
-    } catch (error) {
-    }
+      const products = <Product>(
+        await this.apiService.get('api/products/').toPromise()
+      );
+      this.products = products;
+    } catch (error) {}
   }
 
   getDataForm(): Product {

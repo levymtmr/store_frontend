@@ -16,6 +16,8 @@ import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ModalLoginComponent } from './modals/modal-login/modal-login.component';
 import { SellsComponent } from './sells/sells.component';
+import { ModalMakeSellsComponent } from './modals/modal-make-sells/modal-make-sells.component';
+import { ModalQuantityComponent } from './modals/modal-quantity/modal-quantity.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,10 @@ import { SellsComponent } from './sells/sells.component';
     SidebarComponent,
     ModalLoginComponent,
     SellsComponent,
+    ModalMakeSellsComponent,
+    ModalQuantityComponent
   ],
-  entryComponents: [ModalLoginComponent],
+  entryComponents: [ModalLoginComponent, ModalMakeSellsComponent, ModalQuantityComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

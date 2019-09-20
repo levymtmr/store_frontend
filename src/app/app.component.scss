@@ -1,7 +1,21 @@
 .navbar {
-    position: relative;
+  position: relative;
 }
 
 .outros-app {
-    position: relative;
+  position: relative;
+}
+
+#main {
+  transition: margin-left 0.5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }
