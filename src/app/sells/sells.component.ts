@@ -3,17 +3,12 @@ import { FormGroup } from '@angular/forms';
 import { Product } from './../models/product.models';
 import { Component, OnInit } from '@angular/core';
 import { ApiServices } from '../services/api-services';
-<<<<<<< HEAD
 import { User } from '../models/user.models';
 import { OrderDetail } from '../models/order-detail.models';
 import * as _ from 'lodash';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
-import {ModalMakeSellsComponent} from "../modals/modal-make-sells/modal-make-sells.component";
-import {ModalQuantityComponent} from "../modals/modal-quantity/modal-quantity.component";
-=======
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Product } from '../models/product.models';
->>>>>>> 4da296e0d97711c620e49a28c16ab9b75e51176b
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { ModalMakeSellsComponent } from "../modals/modal-make-sells/modal-make-sells.component";
+import { ModalQuantityComponent } from "../modals/modal-quantity/modal-quantity.component";
 
 
 @Component({
@@ -22,7 +17,6 @@ import { Product } from '../models/product.models';
   styleUrls: ['./sells.component.scss']
 })
 export class SellsComponent implements OnInit {
-<<<<<<< HEAD
   products: Product;
   users: User;
   sellForm: FormGroup;
@@ -33,19 +27,10 @@ export class SellsComponent implements OnInit {
   sellSuccess: boolean;
   errorMessages: any;
   makeSellModal: BsModalRef;
-=======
-  orderForm: FormGroup;
-  ordemDetailForm: FormGroup;
-  mostrarForm: Boolean = false;
-  products: any;
-  users: any;
-  payments: any;
->>>>>>> 4da296e0d97711c620e49a28c16ab9b75e51176b
 
   constructor(private _apiServices: ApiServices, private _modalService: BsModalService) {}
 
   ngOnInit() {
-<<<<<<< HEAD
     this.createForm();
 
     this.createOrderForm();
@@ -125,61 +110,6 @@ export class SellsComponent implements OnInit {
       .get(`api/products/${id}`)
       .toPromise();
     return product['name'];
-=======
-    this.createOrderForm();
-    this.createOrdemDetailForm();
-    this.getProducts();
-    this.getUsers();
-    this.getPaymentMethods();
-  }
-
-  createOrderForm() {
-    this.orderForm = new FormGroup({
-      order_date: new FormControl(null, Validators.required),
-      ship_date: new FormControl(null, Validators.required),
-      payment: new FormControl(null, Validators.required),
-      user: new FormControl(null, Validators.required),
-      order_details: new FormControl(null, Validators.required)
-    });
-  }
-
-  createOrdemDetailForm() {
-    this.ordemDetailForm = new FormGroup({
-      products: new FormControl(null, Validators.required),
-      price: new FormControl(null, Validators.required),
-      quantity: new FormControl(null, Validators.required),
-      discount: new FormControl(null, Validators.required),
-      user: new FormControl(null, Validators.required)
-    });
-  }
-
-  async getProducts() {
-    const products = await this._apiServices.get('api/products/').toPromise();
-    this.products = products;
-  }
-
-  async getUsers() {
-    const users = await this._apiServices.get('api/users/').toPromise();
-    this.users = users;
-  }
-
-  async getPaymentMethods() {
-    const payments = await this._apiServices.get('api/payment/').toPromise();
-    this.payments = payments;
-  }
-
-  async getProductById(id: string) {
-    const product = await this._apiServices.get('api/products/' + id).toPromise();
-    console.log('produto', product);
-  }
-
-  getOrderDetailValues() {
-    console.log('value do produto', this.ordemDetailForm.get('products').value);
-  }
-
-  createOrdeDetail() {
-    this.mostrarForm = true;
->>>>>>> 4da296e0d97711c620e49a28c16ab9b75e51176b
   }
 
   async getPaymentMethods() {
@@ -244,10 +174,12 @@ export class SellsComponent implements OnInit {
       item: this.sellForm.get('product').value
     }
 
-    this._modalService.show(ModalQuantityComponent, {initialState} );
+    this._modalService.show(ModalQuantityComponent, {initialState, class: 'gray modal-lg'} );
   }
 
   openModalMakeSell() {
       this._modalService.show(ModalMakeSellsComponent);
   }
 }
+
+

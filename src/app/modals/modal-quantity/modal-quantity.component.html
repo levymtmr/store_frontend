@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">Modal</h4>
+<h4 class="modal-title pull-left">Adicionar Quantidades</h4>
   <button
     type="button"
     class="close pull-right"
@@ -11,14 +11,45 @@
 </div>
 <div class="modal-body">
   <div class="row">
-    <div class="col-sm-4">
-      <input class="form-control" type="text" value="{{ productName }}" />
+    <div class="col-sm-2">
+        <label>Codigo</label>
+      <input
+        class="form-control input-display"
+        type="text"
+        value="{{ productId }}"
+      />
     </div>
-    <div class="col-sm-4">
-      <input class="form-control" type="text" value="{{ productId }}" />
+    
+    <div class="col-sm-6">
+        <label>Descrição</label>
+      <input
+        class="form-control input-display"
+        type="text"
+        value="{{ productName }}"
+      />
     </div>
-    <div class="col-sm-4">
-      <input class="form-control" type="text" value="{{ productPrice }}" />
+    <div class="col-sm-2">
+      <label>{{ productUnity }}</label>
+        <input
+          class="form-control input-display"
+          type="text"
+          [(ngModel)]="productQuantity"
+          (ngModelChange)="valueChangeQuantity($event)"
+          value="{{ productQuantity }}"
+        />
+      </div>
+
+    <div class="col-sm-2">
+        <label>Valor</label>
+      <input
+        class="form-control input-display"
+        type="text"
+        [(ngModel)]="productDisplayPrice"
+        (ngModelChange)="valueChangePrice($event)"
+        
+      />
     </div>
   </div>
+  <br>
+  <button class="btn btn-primary pull-right">Confirmar</button>
 </div>

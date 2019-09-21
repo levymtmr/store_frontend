@@ -13,11 +13,14 @@ export class ModalQuantityComponent implements OnInit {
   productId: number;
   productName: string;
   productPrice: number;
-  modalRef: BsModalRef;
+  productQuantity: number = 1;
+  productDisplayPrice: number;
+  productUnity: string;
 
   constructor(
     private _apiServices: ApiServices,
-    private _modalService: BsModalService
+    private _modalService: BsModalService,
+    private _bsModalRef: BsModalRef
   ) {}
 
   ngOnInit() {
@@ -31,11 +34,27 @@ export class ModalQuantityComponent implements OnInit {
     );
     this.productId = products.id;
     this.productName = products.name;
+    this.productQuantity = products.quantity;
     this.productPrice = products.price;
+    this.productDisplayPrice = products.price;
+    this.productUnity = products.unity;
     console.log('id do item', products);
   }
 
+  valueChangeQuantity(value) {
+    const total = this.productPrice * value;
+    this.productDisplayPrice = total;
+  }
+
+  valueChangePrice(value) {
+    if (this.productUnity == "KG") {
+      const total = (value * 1000) / this.productPrice;
+      this.productQuantity = total;
+    };
+    
+  }
+
   modalClose() {
-    this.modalRef.hide();
+    this._bsModalRef.hide();
   }
 }
