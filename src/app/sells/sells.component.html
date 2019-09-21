@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--<div class="container">-->
 <!--  <div class="row">-->
 <!--    <div class="col-sm-6 order-detail-form">-->
@@ -161,4 +162,60 @@
     <button class="btn-finish-resume">Fechar Pedido</button>
     </div>
   </div>
+=======
+<div class="row">
+  <div class="col">
+    <div class="form-group container">
+      <form [formGroup]="orderForm">
+        <label for="">Data Venda</label>
+        <br>
+        <input class="form-control" type="Date" formControlName="order_date">
+        <br>
+        <label for="">Data Entrega</label>
+        <br>
+        <input class="form-control" type="Date" formControlName="ship_date">
+        <br>
+        <label for="">Formas de pagamento</label>
+        <br>
+        <select class="form-control" formControlName="payment">
+          <option value="{{ payment.id }}" *ngFor="let payment of payments">{{ payment.payment_type }}</option>
+        </select>
+        <br>
+        <button class="btn btn-primary btn-sm" (click)="createOrdeDetail()">Adicionar Produtos</button>
+        <br>
+        <br>
+        <select class="form-control" formControlName="user">
+          <option value="{{ user.id }}" *ngFor="let user of users">{{ user.username }}</option>
+        </select>
+      </form>
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-group container" *ngIf="mostrarForm">
+      <form [formGroup]="ordemDetailForm" >
+        <br>
+        <label for="">Produtos</label>
+        <br>
+        <select class="form-control" formControlName="products">
+          <option value='{{ product.id }}' *ngFor="let product of products">  {{ product.name }}</option>  
+        </select>
+        <br>
+        <label>Preço</label>
+        <br>
+        <input class="form-control" type="text" value='' formControlName="price">
+        <br>
+        <label for="">Quantidade</label>
+        <br>
+        <input class="form-control" type="text" formControlName="quantity">
+        <br>
+        <Label>Descontos</Label>
+        <br>
+        <input class="form-control" type="text" formControlName="discount">
+        <br>
+        <button class="btn btn-primary btn-sm" (click)="getOrderDetailValues()">Adicionar Produto</button>
+      </form>
+      
+    </div>    
+  </div> 
+>>>>>>> 4da296e0d97711c620e49a28c16ab9b75e51176b
 </div>

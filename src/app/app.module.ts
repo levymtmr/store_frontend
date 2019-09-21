@@ -16,8 +16,12 @@ import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ModalLoginComponent } from './modals/modal-login/modal-login.component';
 import { SellsComponent } from './sells/sells.component';
+<<<<<<< HEAD
 import { ModalMakeSellsComponent } from './modals/modal-make-sells/modal-make-sells.component';
 import { ModalQuantityComponent } from './modals/modal-quantity/modal-quantity.component';
+=======
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+>>>>>>> 4da296e0d97711c620e49a28c16ab9b75e51176b
 
 @NgModule({
   declarations: [
@@ -43,6 +47,7 @@ import { ModalQuantityComponent } from './modals/modal-quantity/modal-quantity.c
     ReactiveFormsModule,
     FormsModule,
     ModalModule.forRoot(),
+    TypeaheadModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
