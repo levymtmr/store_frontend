@@ -1,3 +1,4 @@
+import { Client } from './../models/client.models';
 import { FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Product } from './../models/product.models';
@@ -7,8 +8,8 @@ import { User } from '../models/user.models';
 import { OrderDetail } from '../models/order-detail.models';
 import * as _ from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { ModalMakeSellsComponent } from "../modals/modal-make-sells/modal-make-sells.component";
-import { ModalQuantityComponent } from "../modals/modal-quantity/modal-quantity.component";
+import { ModalMakeSellsComponent } from '../modals/modal-make-sells/modal-make-sells.component';
+import { ModalQuantityComponent } from '../modals/modal-quantity/modal-quantity.component';
 
 
 @Component({
@@ -26,16 +27,24 @@ export class SellsComponent implements OnInit {
   paymentMethods: any;
   sellSuccess: boolean;
   errorMessages: any;
-  makeSellModal: BsModalRef;
+  // makeSellModal: BsModalRef;
+  clients: Client;
+  clientForm: FormGroup;
+  selectedProduct: Product;
+  clientItems: Array<OrderDetail> = [];
 
   constructor(private _apiServices: ApiServices, private _modalService: BsModalService) {}
 
   ngOnInit() {
     this.createForm();
 
+    this.createClientForm();
+
     this.createOrderForm();
 
     this.setProductInSelectElement();
+
+    this.setClients();
 
     this.setUsersInSelectElement();
 
@@ -53,6 +62,17 @@ export class SellsComponent implements OnInit {
         Validators.required
       )
     });
+  }
+
+  createClientForm() {
+    this.clientForm = new FormGroup({
+      clientCode: new FormControl(null, Validators.required)
+    });
+  }
+
+  async setClients() {
+    const clients = await this._apiServices.get('api/clients').toPromise();
+    this.clients = clients;
   }
 
   createOrderForm() {
@@ -84,7 +104,7 @@ export class SellsComponent implements OnInit {
       );
       const dataForTable = {
         ordem: ordem_detail.id,
-        name: await this.getProductName(ordem_detail.products),
+        name: await this.getProduct(ordem_detail.products)['name'],
         total: ordem_detail.total
       };
       this.ordeDetails.push(ordem_detail);
@@ -105,11 +125,17 @@ export class SellsComponent implements OnInit {
     this.users = users;
   }
 
-  async getProductName(id) {
+  async getProduct(id) {
     const product: Product = await this._apiServices
       .get(`api/products/${id}`)
       .toPromise();
-    return product['name'];
+    return product;
+  }
+
+  async setDataItemSelectedInForm() {
+    const product = await this.getProduct(this.sellForm.get('product').value);
+    this.selectedProduct = product;
+    console.log("teste", this.selectedProduct);
   }
 
   async getPaymentMethods() {
@@ -169,16 +195,35 @@ export class SellsComponent implements OnInit {
     return null;
   }
 
-  openModalQuantity() {
-    const initialState = {
-      item: this.sellForm.get('product').value
+  // openModalQuantity() {
+  //   const initialState = {
+  //     item: this.sellForm.get('product').value,
+  //     clientCode: this.clientForm.get('clientCode').value
+  //   };
+
+  //   this._modalService.show(ModalQuantityComponent, { initialState, class: 'gray modal-lg'} );
+  // }
+
+  // openModalMakeSell() {
+  //     this._modalService.show(ModalMakeSellsComponent);
+  // }
+
+  async getDataProduct() {
+    const data = {
+      products: this.selectedProduct.id,
+      quantity: this.selectedProduct.quantity,
+      discount: 0,
+      client: this.clientForm.get('clientCode').value,
+      price: this.selectedProduct.price
+    };
+    try {
+      const ordeDetail: OrderDetail =  await this._apiServices.post('api/order-details/', data).toPromise();
+      this.clientItems.push(ordeDetail);
+    } catch (error) {
+      console.log(error);
     }
+   
 
-    this._modalService.show(ModalQuantityComponent, {initialState, class: 'gray modal-lg'} );
-  }
-
-  openModalMakeSell() {
-      this._modalService.show(ModalMakeSellsComponent);
   }
 }
 

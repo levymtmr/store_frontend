@@ -29,7 +29,7 @@
       />
     </div>
     <div class="col-sm-2">
-      <label>{{ productUnity }}</label>
+      <label>Quantidade/{{ productUnity }}</label>
         <input
           class="form-control input-display"
           type="text"
@@ -51,5 +51,5 @@
     </div>
   </div>
   <br>
-  <button class="btn btn-primary pull-right">Confirmar</button>
+  <button (click)="createOrderDetail()" class="btn btn-primary pull-right">Confirmar</button>
 </div>

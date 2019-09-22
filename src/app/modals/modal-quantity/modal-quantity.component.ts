@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiServices } from '../../services/api-services';
 import { Product } from '../../models/product.models';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { OrderDetail } from 'src/app/models/order-detail.models';
+import { stringify } from '@angular/core/src/util';
 
 @Component({
   selector: 'app-modal-quantity',
@@ -10,16 +12,16 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 })
 export class ModalQuantityComponent implements OnInit {
   item;
+  clientCode;
   productId: number;
   productName: string;
   productPrice: number;
-  productQuantity: number = 1;
+  productQuantity = 1;
   productDisplayPrice: number;
   productUnity: string;
 
   constructor(
     private _apiServices: ApiServices,
-    private _modalService: BsModalService,
     private _bsModalRef: BsModalRef
   ) {}
 
@@ -41,17 +43,33 @@ export class ModalQuantityComponent implements OnInit {
     console.log('id do item', products);
   }
 
-  valueChangeQuantity(value) {
+  valueChangeQuantity(value: number) {
     const total = this.productPrice * value;
     this.productDisplayPrice = total;
   }
 
-  valueChangePrice(value) {
-    if (this.productUnity == "KG") {
+  valueChangePrice(value: number) {
+    if (this.productUnity === 'KG') {
       const total = (value * 1000) / this.productPrice;
       this.productQuantity = total;
+    }
+  }
+
+  async createOrderDetail() {
+    const data = {
+      price: this.productDisplayPrice,
+      quantity: this.productQuantity,
+      products: this.productId,
+      client: this.clientCode,
+      discount: 0
     };
-    
+    try {
+      const orderDetail = <OrderDetail> await this._apiServices.post('api/order-details/', data).toPromise();
+      this.modalClose();
+      // localStorage.setItem('list_ordems', stringify(orderDetail.id));
+    } catch (error) {
+      console.log("eeaesadasd", error);
+    }
   }
 
   modalClose() {

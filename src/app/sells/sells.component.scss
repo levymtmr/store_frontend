@@ -1,65 +1,30 @@
-input {
-  width: 100%;
-}
-
-.descont {
-  width: 20%;
-}
-
-select {
-  width: 50%;
-}
-
-table {
-  margin-top: 10%;
-  margin-right: 5%;
-  margin-bottom: 5%;
-
-}
-
-.order-detail-form {
-  margin-top: 5%;
-}
-
-thead {
-
-}
-
-tbody {
-  border-bottom: 10px;
-  border-color: #0d0d0d;
-  box-shadow: #0d0d0d;
-  background-color: #aead95;
-}
-
-.form-payment {
-  margin-top: 10%;
-}
-
-.resume-section {
-  background-color: gray;
-  height: 100vh;
+.sidebar-resume {
+  background-color:gainsboro;
   text-align: center;
-  width: 100%;
 }
 
-.products-section {
+.select-items {
+  background-color:yellow;
+}
+
+.client-item-list {
   margin-top: 5%;
 }
 
-.footer-resume {
-  margin-top: 80vh;
+.btn-add-product {
+  margin-top: 2%;
 }
 
-.btn-finish-resume {
-  height: 100%;
+.product-forms {
+  margin-top: 5%;
+}
+
+.client-item-list {
+  height: 200%;
+  background-color: darkkhaki;
+}
+
+.finish-button {
   width: 100%;
-}
-
-.box-items {
-  position: absolute;
-  height: 50vh;
-  width: 90%;
-  //border: 1px solid blue;
-  background-color: grey;
+  height: 20%;
 }
