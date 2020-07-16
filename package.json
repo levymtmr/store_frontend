@@ -27,7 +27,7 @@
     "core-js": "^2.6.5",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^2.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.24.0",
     "ng-sidebar": "^8.0.0",
     "ngx-bootstrap": "^3.3.0",
